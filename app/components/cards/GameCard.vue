@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative bg-surface border border-onOutline h-auto rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col"
+    class="relative bg-surface border border-onOutline h-[530px] sm:h-auto rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col"
   >
     <!-- Discount Badge -->
     <span
@@ -14,7 +14,7 @@
     <img
       :src="image"
       :alt="title"
-      class="w-full h-48 sm:h-56 md:h-64  object-cover rounded-lg mb-3"
+      class="w-full sm:h-56 md:h-64  object-cover rounded-lg mb-3"
     />
 
      <!-- Title + Stars -->

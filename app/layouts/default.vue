@@ -16,3 +16,8 @@ import Navbar from '~/components/layout/Navbar.vue'
 import Footer from '~/components/layout/Footer.vue' 
 </script>
 
+<style scoped>
+.bg-page-gradient {
+  background: linear-gradient(180deg, #111 0%, #222 100%);
+}
+</style>

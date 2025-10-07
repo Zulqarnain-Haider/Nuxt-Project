@@ -6,13 +6,14 @@ module.exports =  {
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
-    "./app.vue"
+    "./app.vue",
   ],
   theme: {
     extend: {
             colors: {
         bgLight: "#2C3137",       //  main top left background color
-        bgDark: "#17191D",        //  main bottom right background color
+        bgDark: "#17191D", 
+        onGoNext: "#FF5733",       //  main bottom right background color
         primary: "#FF6A16",       // main primary color
         secondary: "#FFCC00",     // secondary accent color
         outline: "#FF6916",       // outline buttons / borders
@@ -28,11 +29,13 @@ module.exports =  {
        "page-gradient": "linear-gradient(to bottom right, #2C3137, #17191D)",
       },
       fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+        vazirmatn: ["Vazirmatn", "sans-serif"],
         sans: ["Inter", "sans-serif"], // Figma font
       },
 
     },
   },
   plugins: [],
-}
+} 
 

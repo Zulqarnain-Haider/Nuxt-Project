@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <button
     :class="[
       'rounded-lg font transition-all duration-300 shadow-md ',
@@ -12,8 +12,8 @@
   >
     <slot />
   </button>
-</template> -->
-<template>
+</template>
+<!-- <template>
   <button
     class="rounded-lg transition-all duration-300 shadow-md"
     :class="extraClass"
@@ -22,7 +22,7 @@
   >
     <slot />
   </button>
-</template>
+</template> -->
 
 <!-- <script setup>
 defineProps({
