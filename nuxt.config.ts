@@ -4,6 +4,8 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: ['@nuxtjs/tailwindcss'], 
   // css: ['@/assets/css/tailwind.css'],
+  plugins: ['~/plugins/aos.client.ts'],
+
     app: {
     head: {
       link: [

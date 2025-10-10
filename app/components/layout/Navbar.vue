@@ -55,11 +55,11 @@
         </button>
 
         <!--  Map + EN + USD for iPad only -->
-        <div class="hidden sm:flex items-center gap-3 md:gap-4">
+        <!-- <div class="hidden sm:flex items-center gap-3 md:gap-4">
           <button class="flex items-center gap-1  hover:text-primary">
             <i class="fa-solid fa-location-dot text-[18px]"></i><span class="text-[14px]">Spain</span>
-          </button>
-          <div class="relative group">
+          </button> -->
+          <!-- <div class="relative group">
             <button class="flex items-center gap-1 text-[12px] lg:text-[10px] hover:text-primary">
               EN <img src="/games/arrowsHeader.icon.svg" class="w-3" />
             </button>
@@ -82,15 +82,14 @@
               <li class="px-3 py-2 hover:bg-outline hover:text-white">EUR</li>
               <li class="px-3 py-2 hover:bg-outline hover:text-white">PKR</li>
             </ul>
-          </div>
-        </div>
+          </div> -->
 
         <!-- Sign In -->
         <NuxtLink
           to="/signin"
-          class="bg-primary text-mainText px-4 py-1.5 md:py-1.5 rounded-md text-xs sm:text-sm font-medium hover:opacity-90 transition"
+          class="bg-primary text-mainText px-4 py-1.5 md:py-1.5 rounded-md text-xs font-poppins sm:text-sm font-meum hover:opacity-90 transition"
         >
-          Sign In
+          SigI
         </NuxtLink>
 
         <img
@@ -102,15 +101,16 @@
 
       <!--  Desktop / Laptop (≥1181 px) -->
       <div class="hidden xl:flex items-center gap-4 2xl:gap-6">
-        <button class="flex items-center text-[13px] hover:text-primary">
+        <button class="flex items-center text-[13px] hover:text-primary font-roboto">
           <i class="fa-solid fa-location-dot text-[18px] mr-1"></i>Spain
         </button>
         <div class="relative group">
-          <button class="flex items-center gap-1 text-[12px] hover:text-primary">
+          <button class="flex items-center gap-1 text-[12px] hover:text-primary font-roboto">
             EN <img src="/games/arrowsHeader.icon.svg" class="w-3" />
           </button>
           <ul
-            class="absolute right-0 mt-2 hidden group-hover:block bg-surface border border-outline rounded shadow-lg text-sm"
+            class="absolute right-0 mt-2 hidden group-hover:block bg-surface border
+             border-outline rounded shadow-lg text-sm"
           >
             <li class="px-3 py-2 hover:bg-outline hover:text-white">EN</li>
             <li class="px-3 py-2 hover:bg-outline hover:text-white">FR</li>
@@ -118,11 +118,12 @@
           </ul>
         </div>
         <div class="relative group">
-          <button class="flex items-center gap-1 text-[12px] hover:text-primary">
+          <button class="flex items-center gap-1 text-[12px] hover:text-primary font-roboto">
             USD <img src="/games/arrowsHeader.icon.svg" class="w-3" />
           </button>
           <ul
-            class="absolute right-0 mt-2 hidden group-hover:block bg-surface border border-outline rounded shadow-lg text-sm"
+            class="absolute right-0 mt-2 hidden group-hover:block bg-surface border
+             border-outline rounded shadow-lg text-sm"
           >
             <li class="px-3 py-2 hover:bg-outline hover:text-white">USD</li>
             <li class="px-3 py-2 hover:bg-outline hover:text-white">EUR</li>
@@ -131,7 +132,8 @@
         </div>
         <NuxtLink
           to="/signin"
-          class="bg-primary text-mainText px-4 py-1.5 rounded-md text-[15px] font-medium hover:opacity-90 transition"
+          class="bg-primary text-mainText px-4 py-1.5 rounded-md 
+          text-[15px] font-medium hover:opacity-90 transition font-roboto"
         >
           Sign In
         </NuxtLink>
@@ -155,7 +157,7 @@
           </div>
 
           <!-- Links -->
-          <ul class="flex flex-col gap-4 px-6 py-4 font-medium text-lg">
+          <ul class="flex flex-col gap-4 px-6 py-4 font-medium font-poppins text-lg">
             <li v-for="(link, i) in links" :key="i">
               <NuxtLink
                 :to="link.path"
@@ -168,10 +170,38 @@
           </ul>
 
           <!-- Footer (mobile only) -->
-          <div class="mt-auto border-t border-outline px-6 py-4 flex justify-between items-center text-sm sm:hidden">
-            <button class="flex items-center gap-1 hover:text-primary">EN <i class="fa-solid fa-chevron-down text-xs"></i></button>
-            <button class="flex items-center gap-1 hover:text-primary">USD <i class="fa-solid fa-chevron-down text-xs"></i></button>
-            <button class="hover:text-primary text-[18px]"><i class="fa-solid fa-location-dot"></i> <span class="text-[15px]">Spain</span></button>
+          <div class="mt-2 border-t border-outline px-6 py-4 flex items-center justify-between ">
+        <!-- Language dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-2 text-sm hover:text-primary font-roboto">
+            EN <img src="/games/arrowsHeader.icon.svg" class="w-3" />
+          </button>
+          <ul
+            class="absolute left-0 mt-2 hidden group-hover:block bg-surface border
+             border-outline rounded shadow-lg text-sm"
+          >
+            <li class="px-3 py-2 hover:bg-outline hover:text-white">EN</li>
+            <li class="px-3 py-2 hover:bg-outline hover:text-white">FR</li>
+            <li class="px-3 py-2 hover:bg-outline hover:text-white">DE</li>
+          </ul>
+        </div>
+
+        <!-- Currency dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-2 text-sm hover:text-primary font-roboto">
+            USD <img src="/games/arrowsHeader.icon.svg" class="w-3" />
+          </button>
+          <ul
+            class="absolute left-0 mt-2 hidden group-hover:block bg-surface border border-outline rounded shadow-lg text-sm"
+          >
+            <li class="px-3 py-2 hover:bg-outline hover:text-white">USD</li>
+            <li class="px-3 py-2 hover:bg-outline hover:text-white">EUR</li>
+            <li class="px-3 py-2 hover:bg-outline hover:text-white">PKR</li>
+          </ul>
+        </div>
+
+       <button class="hover:text-primary text-[18px]">
+        <i class="fa-solid fa-location-dot"></i> <span class="text-[15px]">Spain</span></button>
           </div>
         </div>
       </div>

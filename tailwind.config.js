@@ -31,6 +31,7 @@ module.exports =  {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
         vazirmatn: ["Vazirmatn", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
         sans: ["Inter", "sans-serif"], // Figma font
       },
 
