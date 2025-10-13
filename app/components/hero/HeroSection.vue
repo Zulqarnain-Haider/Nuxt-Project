@@ -15,7 +15,7 @@
         class="w-full lg:w-1/2 md:text-center lg:text-left order-2 lg:order-1 px-2 md:px-3 lg:px-"
       >
         <h1
-          class="text-3xl sm:text-3xl lg:text-4xl font-bold font-poppins leading-tight mb-4 whitespace-nowrap text-primary"
+          class="text-3xl sm:text-4xl lg:text-4xl font-bold font-poppins leading-tight mb-4 whitespace-nowrap text-primary"
         >
           Your Next Game Is <br />
           <span class="text-mainText" >Just One Click Away.</span>
@@ -32,7 +32,8 @@
             variant="primary"
             :width="0"
             :height="48"
-            extraClass="px-6 py-3 text-base font-poppins rounded-lg"
+            extraClass="px-6 md:px-7 py-3 text-base font-poppins
+            rounded-3xl shadow-lg shadow-primary/40 hover:shadow-primary/60 rounded-2xl sm:rounded-2xl transition-all duration-300"
           >
             Browse Deals
           </UiButton>
@@ -40,7 +41,7 @@
             variant="outline"
             :width="0"
             :height="48"
-            extraClass="px-6 py-3 text-base font-poppins rounded-lg"
+            extraClass="px-6 md:px-7 py-3 text-base font-poppins border-[2.5px] sm:border-[3px] rounded-2xl sm:rounded-2xl"
           >
             View Games
           </UiButton>

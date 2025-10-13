@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative bg-surface border border-outline rounded-xl p-3 sm:p-4 md:p-5 shadow-md 
+    class="relative bg-surface border border-onOutline rounded-xl p-3 sm:p-4 md:p-5 shadow-md 
     hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full"
   >
     <!-- Discount Badge -->
@@ -13,22 +13,22 @@
     </span>
 
     <!-- Game Image -->
-    <div class="relative mb-3">
+    <div class="relative mb-2 md:mb-1 xl:mb-3">
       <img
         :src="image"
         :alt="title"
-        class="w-full h-[160px] sm:h-[180px] md:h-[200px] lg:h-[220px] object-cover rounded-lg"
+        class="w-full h-[180px] sm:h-[180px] md:h-[180px] lg:h-[190px] xl:h-[230px] object-cover rounded-lg"
       />
     </div>
 
     <!-- Title + Stars -->
     <div class="flex items-center justify-between">
       <h3
-        class="font-semibold text-sm sm:text-xs md:text-sm text-mainText truncate"
+        class="font-semibold text-xs sm:text-xs md:text-sm text-mainText truncate"
       >
         {{ title }}
       </h3>
-      <div class="flex text-yellow-400 text-xs sm:text-sm">
+      <div class="flex text-yellow-400 text-[10px] sm:text-xs lg:sm">
         <i class="fa-solid fa-star" />
         <i class="fa-solid fa-star" />
         <i class="fa-solid fa-star" />
@@ -38,15 +38,15 @@
     </div>
 
     <!-- Price + Rating -->
-    <div class="flex items-center justify-between mt-2">
-      <div class="flex items-center gap-2">
+    <div class="flex items-center justify-between mt-2 md:mt-1 xl:mt-2">
+      <div class="flex items-center gap-1 md:gap-1 xl:gap-2">
         <span
-          class="line-through text-onMainText text-xs sm:text-sm"
-          >${{ oldPrice }}</span
+          class="line-through text-onMainText text-xs sm:text-sm flex items-baseline"
+          >{{ oldPrice }}<span class="text-[10px] sm:text-[11px] mr-[1px]">$</span></span
         >
         <span
-          class="text-mainText text-sm sm:text-base"
-          >${{ price }}</span
+          class="text-mainText text-xs sm:text-base flex items-baseline"
+          >{{ price }}<span class="text-[11px] sm:text-[12px] mr-[1px]">$</span></span
         >
       </div>
       <div class="flex items-center gap-1 font-medium">
@@ -59,23 +59,27 @@
     </div>
 
     <!-- Buttons -->
-    <div class="flex gap-2 mt-3">
+    <div class="flex gap-2 mt-3 md:mt-1 xl:mt-3">
+     <!--  Add to Cart (outline primary) -->
       <UiButton
         class="flex-1"
         :width="0"
         :height="38"
-        extraClass="bg-surface border-2 border-outline text-mainText
-         hover:bg-outline hover:text-white text-sm 
-          font-vazirmatn py-2 rounded-xl whitespace-nowrap"
+         variant="outline" 
+        extraClass="bg-surface text-mainText
+         hover:bg-outline hover:text-white text-xs 
+          font-vazirmatn py-2 sm:py-1 rounded-xl whitespace-nowrap"
       >
         Add to Cart
       </UiButton>
+    <!-- 🟠 Buy Now (solid primary background) -->
       <UiButton
         class="flex-1 "
         :width="0"
         :height="38"
+        variant="primary" 
         extraClass="bg-primary border-2 border-primary text-mainText
-         hover:opacity-90 text-sm sm:text-sm  font-vazirmatn py-2 rounded-xl whitespace-nowrap"
+         hover:opacity-90 text-xs  font-vazirmatn py-2 rounded-xl whitespace-nowrap"
       >
         Buy Now
       </UiButton>

@@ -33,6 +33,8 @@
               :alt="c.title"
               class="absolute inset-0 w-full h-full object-cover"
             />
+    <div class="absolute inset-0 bg-black/40 z-0"></div>
+
             <div
               class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"
             >
@@ -56,6 +58,8 @@
               :alt="c.title"
               class="absolute inset-0 w-full h-full object-cover"
             />
+    <div class="absolute inset-0 bg-black/40 z-0"></div>
+
             <div
               class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"
             >
@@ -71,6 +75,8 @@
             :alt="cats[5].title"
             class="absolute inset-0 w-full h-full object-cover"
           />
+    <div class="absolute inset-0 bg-black/40 z-0"></div>
+
           <div
             class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"
           >
@@ -96,6 +102,8 @@
           :alt="c.title"
           class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />
+    <div class="absolute inset-0 bg-black/40 z-0"></div>
+
         <div
           class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3"
         >

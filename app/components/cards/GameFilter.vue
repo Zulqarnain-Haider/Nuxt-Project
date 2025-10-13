@@ -19,6 +19,6 @@
 defineProps({
   title: String,
   image: String,
-  buttonText: { type: String, default: "Join Now" },
+  buttonText: { type: String, default: "Buy Now" },
 });
 </script>

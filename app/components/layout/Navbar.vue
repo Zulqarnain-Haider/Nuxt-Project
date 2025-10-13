@@ -89,7 +89,7 @@
           to="/signin"
           class="bg-primary text-mainText px-4 py-1.5 md:py-1.5 rounded-md text-xs font-poppins sm:text-sm font-meum hover:opacity-90 transition"
         >
-          SigI
+          Sign In
         </NuxtLink>
 
         <img

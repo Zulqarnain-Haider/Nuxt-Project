@@ -3,6 +3,8 @@
      <br>
   <div class="min-h-screen bg-page-gradient  text-white">
     <!-- Navbar is layout-level — already working -->
+
+     <!-- Hero Section -->
     <HeroSection />
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px- mt-6">
@@ -13,28 +15,38 @@
       
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 mt-6">
 
-      <!-- Popular -->
+      <!-- Trending Section -->
       <TrendingGames class="mt-20 pr-2 sm:pr-3 lg:pr-9" />
-      
- <div class="mt-12 pt" >
-      <!-- Trending -->
-      <TournamentsGame />
-     </div>
-       
     </main>
      
-     <div class="mt-12 pt" >
-      <!-- Trending -->
-      <TrendingGames />
-     </div>
+    <main class="mt-12"> 
+      <!-- Tounament Section -->
+      <TournamentsGame />
 
-      <!-- More sections placeholder (Tournaments / Upcoming / Deals / Reviews / Blog) -->
-      <section class="mt-16">
-        <!-- We'll implement these next — placeholder to keep page flow -->
-        <div class="text-center text-2xl font-semibold text-onMainText py-12">
-          (More sections — Tournaments / Upcoming / Deals / Reviews / Blog — will be added here)
-        </div>
-      </section>
+    </main>
+
+     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 mt-6">
+
+      <!-- Trending Section -->
+      <Bestsellers class="mt-20 pr-2 sm:pr-3 lg:pr-9" />
+
+      <UpComingGames class="mt-20 pr-2 sm:pr-3 lg:pr-9" />
+    </main>
+   
+
+         <!-- Hero Section 2 -->
+    <HeroSection2 class="mt-14" />
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px- mt-6">
+
+      <!-- Customer Review Section -->
+      <CustomerReview class="mt-24" />
+
+      <Blog class="mt-24 mb-20" />
+
+    </main>
+      
+
   </div>
 
   </div>
@@ -45,10 +57,14 @@
 import GameCard from '~/components/cards/GameCard.vue'
 // import GameFilter from '~/components/cards/GameFilter.vue'
 import HeroSection from '~/components/hero/HeroSection.vue'
-import PopularGames from '~/components/sections/TrendingGames.vue'
 import CategoriesSection from '~/components/sections/CategoriesSection.vue'
 import TrendingGames from '~/components/sections/TrendingGames.vue'
 import TournamentsGame from '~/components/sections/TournamentsGame.vue'
+import Bestsellers from '~/components/sections/BestsellersSection.vue'
+import UpComingGames from '~/components/sections/UpComingGames.vue'
+import HeroSection2 from '~/components/hero/HeroSection2.vue'
+import CustomerReview from '~/components/sections/CustomerReviewsSection.vue'
+import Blog from '~/components/sections/BlogSection.vue'
 </script>
 
 
