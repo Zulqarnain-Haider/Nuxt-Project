@@ -87,11 +87,11 @@ defineProps<{
   transition: color 0.3s ease;
 }
 .fas {
-  color: #ffb800;
+  color: #FF6A16;
 }
 .far {
   color: transparent;
-  -webkit-text-stroke: 1px #ffb800;
+  -webkit-text-stroke: 1px #FF6A16;
 }
 :deep(img[alt="review-card-bg"]) {
   filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4));

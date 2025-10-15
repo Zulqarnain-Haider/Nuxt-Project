@@ -11,10 +11,12 @@ module.exports =  {
   theme: {
     extend: {
             colors: {
+        bgNav: '#2D3238',      //  navbar background color
         bgLight: "#2C3137",       //  main top left background color
         bgDark: "#17191D", 
         onGoNext: "#FF5733",       //  main bottom right background color
         primary: "#FF6A16",       // main primary color
+        onPrimary: "#FFFFFF",   // text/icons on primary
         secondary: "#FFCC00",     // secondary accent color
         outline: "#FF6916",       // outline buttons / borders
         onOutline: "#FFFFFF",     // text/icons on outline

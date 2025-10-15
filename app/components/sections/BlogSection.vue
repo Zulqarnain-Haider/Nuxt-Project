@@ -91,8 +91,8 @@
         class="rounded-full transition-all duration-300 flex items-center justify-center"
         :class="[
           (n - 1) === currentDot
-            ? 'bg-primary w-2.5 h-2.5 scale-110'
-            : 'bg-gray-500/50 w-2 h-2'
+            ? 'bg-primary w-4 h-4 scale-110'
+            : 'bg-onPrimary w-2 h-2'
         ]"
       ></span>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative w-full overflow-hidden bg-cover bg-center bg-no-repeat text-white"
+    class="relative w-full max-w-7xl mx-auto overflow-hidden bg-cover bg-center bg-no-repeat text-white"
   >
     <!-- Dark overlay -->
     <!-- <div class="absolute inset-0 bg-black/40 z-0"></div> -->

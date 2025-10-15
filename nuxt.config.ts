@@ -8,8 +8,14 @@ export default defineNuxtConfig({
 
     app: {
     head: {
+      title: "E-GAMESTORE",
       link: [
-          // Font Awesome (already there)
+        {
+          rel: "icon",
+          type: "image/x-icon",
+          href: "/favicon.svg",
+        },
+        // Font Awesome (already there)
         {
           rel: "stylesheet",
           href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css",

@@ -18,6 +18,6 @@ import Footer from '~/components/layout/Footer.vue'
 
 <style scoped>
 .bg-page-gradient {
-  background: linear-gradient(180deg, #111 0%, #222 100%);
+  background: linear-gradient(143.14deg, #2C3137 8.7%, #17191D 89.31%);
 }
 </style>

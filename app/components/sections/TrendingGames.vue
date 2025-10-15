@@ -39,7 +39,7 @@
       <!-- Left Arrow -->
       <button
         @click="scrollLeft"
-        class="hidden md:flex absolute -left-3 lg:left-2 xl:-left-5 top-1/2 -translate-y-1/2 z-[60] bg-black/40 p-3  hover:bg-primary/70 transition"
+        class="hidden md:flex absolute -left-3 lg:left-2 xl:-left-5 top-1/2 -translate-y-1/2 z-30 bg-black/40 p-3  hover:bg-primary/70 transition"
       >
         <img src="/games/SliderarrowAs.png" alt="Prev" class="" />
       </button>
@@ -47,7 +47,7 @@
       <!-- Right Arrow -->
       <button
         @click="scrollRight"
-        class="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-[60] bg-black/40 p-3 hover:bg-primary/70 transition"
+        class="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-30 bg-black/40 p-3 hover:bg-primary/70 transition"
       >
         <img src="/games/SlidersRightarrow.svg" alt="Next" class="" />
       </button>
@@ -61,8 +61,8 @@
         class="rounded-full transition-all duration-300"
         :class="[
           currentDot === i - 1
-            ? 'bg-primary w-3 h-3'
-            : 'bg-white/30 w-2 h-2'
+            ? 'bg-primary w-4 h-4'
+            : 'bg-onPrimary w-2 h-2'
         ]"
       ></span>
     </div>
@@ -74,16 +74,36 @@ import { ref, computed, onMounted } from 'vue'
 import GameCard from '~/components/cards/GameCard.vue'
 
 const games = [
-  { title: 'Fortnite', image: '/games/black-myth-slider.png', discount: 15, price: 51, oldPrice: 60, rating: 81 },
-  { title: 'Minecraft', image: '/games/minecraft.jpg', discount: 15, price: 45, oldPrice: 55, rating: 88 },
-  { title: 'Counter-Str..', image: '/games/Frame.Slider.jpg', discount: 20, price: 40, oldPrice: 50, rating: 79 },
-  { title: 'Spider-Man 2', image: '/games/spiderman2.jpg', discount: 25, price: 35, oldPrice: 48, rating: 90 },
-  { title: 'The Witcher 3', image: '/games/witcher3.jpg', discount: 18, price: 49, oldPrice: 60, rating: 93 },
-  { title: 'Fortnite', image: '/games/black-myth-slider.png', discount: 15, price: 51, oldPrice: 60, rating: 81 },
-  { title: 'Minecraft', image: '/games/minecraft.jpg', discount: 15, price: 45, oldPrice: 55, rating: 88 },
-  { title: 'Counter-Str..', image: '/games/Frame.Slider.jpg', discount: 20, price: 40, oldPrice: 50, rating: 79 },
-  { title: 'Spider-Man 2', image: '/games/spiderman2.jpg', discount: 25, price: 35, oldPrice: 48, rating: 90 },
-  { title: 'The Witcher 3', image: '/games/witcher3.jpg', discount: 18, price: 49, oldPrice: 60, rating: 93 },
+  { title: 'Fortnite', image: '/games/black-myth-slider.png', discount: 15, price: 51, oldPrice: 60, rating: 3 },
+  { title: 'Minecraft', image: '/games/minecraft.jpg', discount: 15, price: 45, oldPrice: 55, rating: 4 },
+  { title: 'Counter-Str..', image: '/games/Frame.Slider.jpg', discount: 20, price: 40, oldPrice: 50, rating: 5 },
+  { title: 'Spider-Man 2', image: '/games/spiderman2.jpg', discount: 25, price: 35, oldPrice: 48, rating: 1 },
+  { title: 'The Witcher 3', image: '/games/witcher3.jpg', discount: 18, price: 49, oldPrice: 60, rating: 4 },
+  { title: 'Fortnite', image: '/games/black-myth-slider.png', discount: 15, price: 51, oldPrice: 60, rating: 2 },
+  { title: 'Minecraft', image: '/games/minecraft.jpg', discount: 15, price: 45, oldPrice: 55, rating: 3 },
+  { title: 'Counter-Str..', image: '/games/Frame.Slider.jpg', discount: 20, price: 40, oldPrice: 50, rating: 5 },
+  { title: 'Spider-Man 2', image: '/games/spiderman2.jpg', discount: 25, price: 35, oldPrice: 48, rating: 4 },
+  { title: 'The Witcher 3', image: '/games/witcher3.jpg', discount: 18, price: 49, oldPrice: 60, rating: 3 },
+  { title: 'Fortnite', image: '/games/black-myth-slider.png', discount: 15, price: 51, oldPrice: 60, rating: 3 },
+  { title: 'Minecraft', image: '/games/minecraft.jpg', discount: 15, price: 45, oldPrice: 55, rating: 4 },
+  { title: 'Counter-Str..', image: '/games/Frame.Slider.jpg', discount: 20, price: 40, oldPrice: 50, rating: 5 },
+  { title: 'Spider-Man 2', image: '/games/spiderman2.jpg', discount: 25, price: 35, oldPrice: 48, rating: 1 },
+  { title: 'The Witcher 3', image: '/games/witcher3.jpg', discount: 18, price: 49, oldPrice: 60, rating: 4 },
+  { title: 'Fortnite', image: '/games/black-myth-slider.png', discount: 15, price: 51, oldPrice: 60, rating: 2 },
+  { title: 'Minecraft', image: '/games/minecraft.jpg', discount: 15, price: 45, oldPrice: 55, rating: 3 },
+  { title: 'Counter-Str..', image: '/games/Frame.Slider.jpg', discount: 20, price: 40, oldPrice: 50, rating: 5 },
+  { title: 'Spider-Man 2', image: '/games/spiderman2.jpg', discount: 25, price: 35, oldPrice: 48, rating: 4 },
+  { title: 'The Witcher 3', image: '/games/witcher3.jpg', discount: 18, price: 49, oldPrice: 60, rating: 3 },
+  { title: 'Fortnite', image: '/games/black-myth-slider.png', discount: 15, price: 51, oldPrice: 60, rating: 3 },
+  { title: 'Minecraft', image: '/games/minecraft.jpg', discount: 15, price: 45, oldPrice: 55, rating: 4 },
+  { title: 'Counter-Str..', image: '/games/Frame.Slider.jpg', discount: 20, price: 40, oldPrice: 50, rating: 5 },
+  { title: 'Spider-Man 2', image: '/games/spiderman2.jpg', discount: 25, price: 35, oldPrice: 48, rating: 1 },
+  { title: 'The Witcher 3', image: '/games/witcher3.jpg', discount: 18, price: 49, oldPrice: 60, rating: 4 },
+  { title: 'Fortnite', image: '/games/black-myth-slider.png', discount: 15, price: 51, oldPrice: 60, rating: 2 },
+  { title: 'Minecraft', image: '/games/minecraft.jpg', discount: 15, price: 45, oldPrice: 55, rating: 3 },
+  { title: 'Counter-Str..', image: '/games/Frame.Slider.jpg', discount: 20, price: 40, oldPrice: 50, rating: 5 },
+  { title: 'Spider-Man 2', image: '/games/spiderman2.jpg', discount: 25, price: 35, oldPrice: 48, rating: 4 },
+  { title: 'The Witcher 3', image: '/games/witcher3.jpg', discount: 18, price: 49, oldPrice: 60, rating: 3 },
 ]
 
 const slider = ref(null)

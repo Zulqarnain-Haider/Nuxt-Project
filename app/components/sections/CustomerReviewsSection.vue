@@ -21,6 +21,7 @@
         :loop="true"
         :space-between="40"
         :autoplay="{ delay: 2500, disableOnInteraction: false }"
+        
         :breakpoints="{
           640: { slidesPerView: 1.5 },
           768: { slidesPerView: 2 },
@@ -75,6 +76,7 @@ const { data: reviews, error } = await useFetch<Review[]>("/api/reviews");
 // safe computed array to use in template (auto-unwrapped there)
 const reviewsArr = computed(() => reviews.value ?? []);
 
+
 const activeIndex = ref(0);
 
 // const len = () => reviewsArr.value.length;
@@ -105,23 +107,24 @@ const onSlideChange = (swiper: any) => {
 
 <style scoped> 
 .customer-reviews-swiper .swiper-pagination {
-  bottom: -10px !important; /* ✅ dots thoda niche */
+  bottom: 5px !important;
   text-align: center;
 }
 
-.customer-reviews-swiper .swiper-pagination-bullet {
-   background: rgba(255, 255, 255, 0.3) !important;
-  width: 8px !important;
-  height: 8px !important;
+
+:deep(.customer-reviews-swiper .swiper-pagination-bullet) {
+   background: #FFFFFF !important;
+  width: 0.5rem !important;
+  height: 0.5rem !important;
   margin: 0 5px !important;
   transition: all 0.3s ease !important;
-  opacity: 0.6 !important;
+  opacity: 1 !important;
   border-radius: 50% !important;
 }
  :deep(.customer-reviews-swiper .swiper-pagination-bullet-active) {
   background-color:  #FF6A16 !important; 
-  width: 10px !important;
-  height: 10px !important;
+  width: 1rem !important;
+  height: 1rem !important;
   opacity: 1 !important;
   transform: scale(1.15);
 }
