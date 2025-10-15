@@ -65,12 +65,12 @@
         >
 
        <!--       Customer Review Overlap Text -->
-       <div
+       <!-- <div
          class="absolute top-[38%] left-1/4 -translate-x-1/2 z-30 text-white 
     font-semibold text-base sm:text-2xl font-poppins whitespace-nowrap"
        >
           Customer Review 
-       </div>
+       </div> -->
 
           <!-- Large Thumbnail -->
           <div
