@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen p- bg-page-gradient text-white">
+  <div class="min-h-screen text-white">
      <br>
-  <div class="min-h-screen bg-page-gradient  text-white">
+  <div class="min-h-screen text-white">
     <!-- Navbar is layout-level — already working -->
 
      <!-- Hero Section -->
@@ -16,7 +16,7 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 mt-6">
 
       <!-- Trending Section -->
-      <TrendingGames class="mt-20 pr-2 sm:pr-3 lg:pr-9" />
+      <TrendingGames class="mt-16 pr-2 sm:pr-3 lg:pr-9" />
     </main>
      
     <main class="mt-12"> 
@@ -28,21 +28,21 @@
      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 mt-6">
 
       <!-- Trending Section -->
-      <Bestsellers class="mt-20 pr-2 sm:pr-3 lg:pr-9" />
+      <Bestsellers class="mt-16 pr-2 sm:pr-3 lg:pr-9" />
 
-      <UpComingGames class="mt-20 pr-2 sm:pr-3 lg:pr-9" />
+      <UpComingGames class="mt-16 pr-2 sm:pr-3 lg:pr-9" />
     </main>
    
 
-         <!-- Hero Section 2 -->
+        <!-- Hero Section 2 -->
     <HeroSection2 class="mt-14" />
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px- mt-6">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px- mt-">
 
       <!-- Customer Review Section -->
-      <CustomerReview class="mt-24" />
+      <CustomerReview class="mt-10" />
 
-      <Blog class="mt-24 mb-20" />
+      <Blog class="mt-16 mb-16" />
 
     </main>
       
@@ -54,8 +54,6 @@
 
 <script setup>
 /* Explicit imports (safe) even though Nuxt auto-imports components in /components */
-import GameCard from '~/components/cards/GameCard.vue'
-// import GameFilter from '~/components/cards/GameFilter.vue'
 import HeroSection from '~/components/hero/HeroSection.vue'
 import CategoriesSection from '~/components/sections/CategoriesSection.vue'
 import TrendingGames from '~/components/sections/TrendingGames.vue'

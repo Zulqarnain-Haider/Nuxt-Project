@@ -32,31 +32,31 @@
 
     <!-- Price + Rating -->
     <div class="flex items-center justify-between mt-2 md:mt-1 xl:mt-2">
-      <div class="flex items-center gap-1 md:gap-1 xl:gap-2">
+      <div class="flex items-center gap-1 md:gap-1 ">
         <span
-          class="line-through text-onMainText text-xs sm:text-sm flex items-baseline" 
-          >{{ oldPrice }}<span class="text-[10px] sm:text-[11px] mr-[1px]">$</span></span
+          class="line-through text-onMainText text-xs lg:text-sm xl:text-md flex items-baseline" 
+          >{{ oldPrice }}<span class="text-[10px] sm:text-[11px]  mr-[1px]">$</span></span
         >
         <span
-          class="text-mainText text-xs sm:text-base flex items-baseline"
-          >{{ price }}<span class="text-[11px] sm:text-[12px] mr-[1px]">$</span></span
+          class="text-mainText text-sm flex items-baseline lg:text-[15px] xl:text-[17px]"
+          >{{ price }}<span class="text-[11px] sm:text-[12px]  mr-[1px]">$</span></span
         >
       </div>
     </div>
 
     <!-- Buttons -->
 <!-- Calendar / Pre-Order Info -->
-<div class="flex justify-between items-center mt-3 text-white text-xs sm:text-sm">
+<div class="flex justify-between items-center mt-3 text-white text-xs sm:text-[11px] lg:text-[13px] xl:text-[14px]">
   <!-- Left: Date -->
-  <div class="flex items-center text-onMainText gap-2">
-    <img src="/games/calendar.svg.svg" alt="Calendar" class="w-4 h-4 opacity-80" />
+  <div class="flex items-center justify-center text-onMainText gap-2 md:gap-1 whitespace-nowrap"> 
+    <img src="/games/calendar.svg.svg" alt="Calendar" class="w-4 h-4 sm:w-3 sm:h-3 lg:h-4 lg:w-4 opacity-80" />
     <span>{{ releaseDate }}</span>
   </div>
 
   <!-- Right: Button / CTA -->
-  <div class="flex items-center gap-1 cursor-pointer">
+  <div class="group flex items-center gap-1 cursor-pointer whitespace-nowrap transition-transform duration-300 hover:scale-105">
     <span class="font-vazirmatn">{{ buttonText }}</span>
-    <img src="/games/TournamentCard.arrow.svg" alt="→" class="w-3 h-3 sm:w-4 sm:h-4" />
+    <img src="/games/TournamentCard.arrow.svg" alt="→" class="w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
   </div>
 </div>
 

@@ -39,7 +39,7 @@
       <!-- Left Arrow -->
       <button
         @click="scrollLeft"
-        class="hidden md:flex absolute -left-3 lg:left-2 xl:-left-5 top-1/2 -translate-y-1/2 z-[60] bg-black/40 p-3  hover:bg-primary/70 transition"
+        class="hidden md:flex absolute -left-3 lg:left-2 xl:-left-5 top-1/2 -translate-y-1/2 z-[60] bg-black/10 p-3 border border-white hover:bg-primary/70 transition"
       >
         <img src="/games/SliderarrowAs.png" alt="Prev" class="" />
       </button>
@@ -47,7 +47,7 @@
       <!-- Right Arrow -->
       <button
         @click="scrollRight"
-        class="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-[60] bg-black/40 p-3 hover:bg-primary/70 transition"
+        class="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-[60] bg-black/10 p-3 border-[1px] border-white hover:bg-primary/70 transition"
       >
         <img src="/games/SlidersRightarrow.svg" alt="Next" class="" />
       </button>

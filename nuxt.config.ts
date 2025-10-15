@@ -17,7 +17,7 @@ export default defineNuxtConfig({
          // Add your Google Fonts here
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Vazirmatn:wght@400;700&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Vazirmatn:wght@400;700&display=swap=Roboto:wght@400;500;700&display=swap",
         },
 
       ],

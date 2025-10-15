@@ -1,6 +1,7 @@
 <template>
   <nav
-    class="bg-surface border-b border-outline text-mainText px-4 sm:px-6 md:px-8 lg:px-10 py-4 md:py-5 lg:py-6 flex items-center justify-between flex-wrap"
+    class="bg-black text-mainText px-4 sm:px-6 md:px-8 lg:px-10 py-4 md:py-5 lg:py-6
+    sticky top-0 z-50 flex items-center justify-between flex-wrap"
   >
     <!-- ========== LEFT SECTION ========== -->
     <div class="flex items-center gap-3 md:gap-4 xl:gap-6">
@@ -106,7 +107,7 @@
         </button>
         <div class="relative group">
           <button class="flex items-center gap-1 text-[12px] hover:text-primary font-roboto">
-            EN <img src="/games/arrowsHeader.icon.svg" class="w-3" />
+            EN <img src="/games/arrowsHeader.icon.svg" class="w-3 hover:text-primary" />
           </button>
           <ul
             class="absolute right-0 mt-2 hidden group-hover:block bg-surface border
@@ -119,7 +120,7 @@
         </div>
         <div class="relative group">
           <button class="flex items-center gap-1 text-[12px] hover:text-primary font-roboto">
-            USD <img src="/games/arrowsHeader.icon.svg" class="w-3" />
+            USD <img src="/games/arrowsHeader.icon.svg" class="w-3 hover:text-primary" />
           </button>
           <ul
             class="absolute right-0 mt-2 hidden group-hover:block bg-surface border

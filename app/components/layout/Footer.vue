@@ -11,7 +11,7 @@
           greatest games. Join the gaming community now to get exclusive content and features.
         </p>
         <ul class="space-x-12 md:space-x-14 pl-8 flex">
-        <li><a href=""><img src="/games/Footer.Facebook.icon.svg" alt=""></a></li>
+        <li><a href=""><img src="/games/Footer.Facebook.icon.svg" alt="" class="lg:scale-75"></a></li>
         <li><a href=""><img src="/games/FooterInstagram.icon.svg" alt=""></a></li>
         <li><a href=""><img src="/games/FooterX.icon.svg" alt=""></a></li>
         <li><a href=""><img src="/games/FooterYouTube.icon.svg" alt=""></a></li>

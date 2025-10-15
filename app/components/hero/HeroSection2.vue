@@ -7,7 +7,7 @@
 
     <!-- Content -->
     <div
-      class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 px-3 pb-6 md:pt-6 md:pb-20 md lg:pl-12"
+      class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 px-3 pb-6 md:px-0 xl:pr-4 md:pt-6 md:pb-12 md lg:pl-12"
     >
       <!-- LEFT SECTION -->
       <div

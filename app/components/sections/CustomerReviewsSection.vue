@@ -1,15 +1,20 @@
 <template>
-  <section class="relative w-full py-20 text-white overflow-hidden">
+  <section class="relative w-full text-white overflow-hidden">
     <!-- 🔹 Title -->
-    <div class="relative z-10 text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-extrabold font-poppins">
-        What Our <span class="text-primary">Gamers</span> Say
-      </h2>
+    <div class="flex items-center justify-between px-4 mb-2 sm:mb-4  sm:px-6 lg:px-7">
+      <h2 class="text-2xl font-semibold font-vazirmatn">Customer Reviews</h2>
+      <div
+        class="text-onGoNext text-lg font-vazirmatn flex items-center cursor-pointer hover:text-primary transition"
+      >
+        View All
+        <img src="/games/Right.arrow.svg" alt="" class="ml-2" />
+      </div>
     </div>
 
     <!-- 🔹 Swiper -->
-    <div class="relative z-10 max-w-6xl mx-auto px-4 md:pb-14 lg:pb-16">
+    <div class="relative z-10 max-w-6xl mx-auto px-4 ">
       <Swiper
+      v-if="reviewsArr.length"
         :modules="[Autoplay, Pagination]"
         :slides-per-view="1.2"
         :centered-slides="true"
@@ -30,7 +35,7 @@
           :key="i"
           v-slot="{ isActive }"
         >
-          <div class="flex justify-center items-center h-full py-20 md:py-28 xl:py-36">
+          <div class="flex justify-center items-center mt-7 h-full pt-14">
             <ReviewCard
               :image="review.image"
               :name="review.name"
@@ -38,6 +43,7 @@
               :text="review.text"
               :isActive="isActive"
               :bgImage="getBgVector(i)"
+              :variant="getCardVariant(i)"
             />
           </div>
         </SwiperSlide>
@@ -47,52 +53,49 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, computed } from "vue"
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import ReviewCard from "~/components/cards/ReviewCard.vue";
 
-const reviews = [
-  {
-    name: "Leo",
-    image: "/games/ReviewCard1.png",
-    rating: 4,
-    text: "Step into a world where every click leads to a new adventure! With a sleek design, a massive game library, and lightning-fast performance, you’ll never want to log out.",
-  },
-  {
-    name: "Hannah Schmitt",
-    image: "/games/ReviewCard2.png",
-    rating: 5,
-    text: "Get ready to level up your fun! This site delivers thrilling games, non-stop updates, and a smooth, blazing-fast experience that keeps you hooked for hours.",
-  },
-  {
-    name: "Alien Machal",
-    image: "/games/ReviewCard3.png",
-    rating: 4,
-    text: "Great interface, smooth animations — it really feels like a gamer’s paradise!",
-  },
-  {
-    name: "Leo",
-    image: "/games/ReviewCard1.png",
-    rating: 5,
-    text: "From buying games to joining tournaments, everything is just seamless.",
-  },
-];
 
-const activeIndex = ref(0)
+interface Review {
+  name: string
+  image: string
+  rating: number
+  text: string
+}
+
+
+// useFetch is SSR-friendly in Nuxt 3 — returns { data, pending, error, refresh }
+const { data: reviews, error } = await useFetch<Review[]>("/api/reviews");
+
+// safe computed array to use in template (auto-unwrapped there)
+const reviewsArr = computed(() => reviews.value ?? []);
+
+const activeIndex = ref(0);
+
+// const len = () => reviewsArr.value.length;
 
 const getBgVector = (index: number) => {
   if (index === activeIndex.value) {
     return "/games/CustomerReviewsMainCard.png"
-  } else if ((index === (activeIndex.value - 1 + reviews.length) % reviews.length)) {
+  } else if ((index === (activeIndex.value - 1 + reviewsArr.value.length) % reviewsArr.value.length)) {
     return "/games/CustomerReviewsLeftCard.png"
-  } else if ((index === (activeIndex.value + 1) % reviews.length)) {
+  } else if ((index === (activeIndex.value + 1) % reviewsArr.value.length)) {
     return "/games/CustomerReviewsRightCard.png"
   } else {
     return "/games/CustomerReviewsMainCard.png"
   }
+}
+
+const getCardVariant = (index: number) => {
+  if (index === activeIndex.value) return "main"
+  if ((index === (activeIndex.value - 1 + reviewsArr.value.length) % reviewsArr.value.length)) return "left"
+  if ((index === (activeIndex.value + 1) % reviewsArr.value.length)) return "right"
+  return "hidden"
 }
 
 const onSlideChange = (swiper: any) => {
@@ -102,7 +105,7 @@ const onSlideChange = (swiper: any) => {
 
 <style scoped> 
 .customer-reviews-swiper .swiper-pagination {
-  bottom: -25px !important; /* ✅ dots thoda niche */
+  bottom: -10px !important; /* ✅ dots thoda niche */
   text-align: center;
 }
 
@@ -113,13 +116,13 @@ const onSlideChange = (swiper: any) => {
   margin: 0 5px !important;
   transition: all 0.3s ease !important;
   opacity: 0.6 !important;
-    border-radius: 50% !important;
+  border-radius: 50% !important;
 }
-.customer-reviews-swiper .swiper-pagination-bullet-active {
-  background: theme('colors.primary') !important; /* ✅ Tailwind color variable use */
-  width: 12px !important;
-  height: 12px !important;
+ :deep(.customer-reviews-swiper .swiper-pagination-bullet-active) {
+  background-color:  #FF6A16 !important; 
+  width: 10px !important;
+  height: 10px !important;
   opacity: 1 !important;
-    transform: scale(1.1);
+  transform: scale(1.15);
 }
 </style>

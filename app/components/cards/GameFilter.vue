@@ -5,11 +5,11 @@
     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100"></div>
     <div class="absolute bottom-1 left-3 right-4 z-10 text-white">
       <h1 class="text-md font-semibold font-vazirmatn truncate">{{ title }}</h1>
-      <span class="flex items-center ">
+      <span class="group flex items-center transition-transform duration-300 hover:scale-105">
       <h class="font-vazirmatn mr-2">
         {{ buttonText }}
     </h>
-        <img src="/games/TournamentCard.arrow.svg" alt="">
+        <img src="/games/TournamentCard.arrow.svg" alt="" class="transition-transform duration-300 group-hover:translate-x-1.5">
     </span>
     </div>
   </div>
