@@ -1,5 +1,12 @@
 <template>
   <div class="min-h-screen text-white">
+    <br>
+    <div class="flex flex-col items-center justify-center min-h-screen">
+    <h1 class="text-3xl font-bold mb-6">Welcome to E-Game Store</h1>
+    <NuxtLink to="/auth/signup" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-onGoNext">Go to Signup</NuxtLink>
+    <NuxtLink to="/profile" class="bg-primary mt-4 text-white px-6 py-3 rounded-lg hover:bg-onGoNext">Go to Profile</NuxtLink>
+  </div>
+
      <br>
   <div class="min-h-screen text-white">
     <!-- Navbar is layout-level — already working -->

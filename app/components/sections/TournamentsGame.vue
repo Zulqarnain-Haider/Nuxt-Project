@@ -50,7 +50,7 @@
     <!-- Left Arrow -->
     <button
       class="swiper-button-prev-custom absolute top-1/3 left-2 md:-left-2 lg:-left-1 
-             bg-black/20 hover:bg-black/90 p-2 border border-white z-30 flex"
+             bg-black/20 hover:bg-black/90 p-2 z-30 flex"
     >
       <img src="/games/SliderLeftarrow.svg" alt="Prev" class="" />
     </button>
@@ -58,7 +58,7 @@
     <!-- Right Arrow (hidden on mobile) -->
     <button
       class="swiper-button-next-custom absolute top-1/3 right-0 md:-right-2 lg:-right-1
-             bg-black/20 hover:bg-black/90 p-2 border border-white z-30 hidden sm:flex"
+             bg-black/20 hover:bg-black/90 p-2 z-30 hidden sm:flex"
     >
       <img src="/games/SlidersRightarrow.svg" alt="Next" class="" />
     </button>
@@ -107,7 +107,6 @@
     challenges. Victory awaits.
   </p>
 </div>
-
 
     <UiButton
       variant="primary"

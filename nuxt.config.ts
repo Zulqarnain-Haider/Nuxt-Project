@@ -2,13 +2,23 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
-  modules: ['@nuxtjs/tailwindcss'], 
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-icon', '@nuxt/image'], 
+
+    pinia: {
+      // @ts-ignore
+    autoImports: ['defineStore', 'storeToRefs']
+  },
+
   // css: ['@/assets/css/tailwind.css'],
   plugins: ['~/plugins/aos.client.ts'],
 
     app: {
     head: {
+      title: 'E-Game-Store',  
       link: [
+
+        { rel: 'icon', type: 'image/svg+xml', href: '/EE-favicon.png' }, 
+
           // Font Awesome (already there)
         {
           rel: "stylesheet",
@@ -24,4 +34,4 @@ export default defineNuxtConfig({
     },
   },
 
-}) 
+})

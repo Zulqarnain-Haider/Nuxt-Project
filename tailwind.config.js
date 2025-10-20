@@ -23,6 +23,7 @@ module.exports =  {
         onFooter: "#888888",      // footer text
         error: "#D91B1B",         // error messages
         onError: "#FFFFFF",       // text on error
+        inputsIn: "#979797"       // text in inputs
 
       },
       backgroundImage: {
@@ -32,8 +33,23 @@ module.exports =  {
         poppins: ["Poppins", "sans-serif"],
         vazirmatn: ["Vazirmatn", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
-        sans: ["Inter", "sans-serif"], // Figma font
+        inter: ["Inter", "sans-serif"], // Figma font
       },
+      keyframes: {
+    shake: {
+      '0%, 100%': { transform: 'translateX(0)' },
+      '20%, 60%': { transform: 'translateX(-6px)' },
+      '40%, 80%': { transform: 'translateX(6px)' },
+    },
+    fadeIn: {
+        '0%': { opacity: '0', transform: 'translateY(20px)' },
+        '100%': { opacity: '1', transform: 'translateY(0)' },
+      },
+  },
+  animation: {
+    shake: 'shake 0.4s ease-in-out',
+    fadeIn: 'fadeIn 0.6s ease-out',
+  },
 
     },
   },

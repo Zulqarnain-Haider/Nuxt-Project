@@ -69,8 +69,9 @@
   </section>
 </template>
 
+
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import GameCard from '~/components/cards/GameCard.vue'
 
 const games = [
@@ -86,47 +87,96 @@ const games = [
   { title: 'The Witcher 3', image: '/games/witcher3.jpg', discount: 18, price: 49, oldPrice: 60, rating: 93 },
 ]
 
+// ✅ Refs
 const slider = ref(null)
 const cardWidth = ref(0)
 const currentPage = ref(0)
+const width = ref(1024) // default safe value
 
-function visibleCards() {
-  if (window.innerWidth >= 1280) return 5
-  if (window.innerWidth >= 1024) return 4
-  if (window.innerWidth >= 820) return 3
+// ✅ Function to safely get innerWidth
+const getWindowWidth = () => {
+  if (typeof window !== 'undefined' && window.innerWidth) {
+    return window.innerWidth
+  }
+  return 1024 // fallback
+}
+
+// ✅ Update width on resize
+const updateWidth = () => {
+  width.value = getWindowWidth()
+}
+
+// ✅ Cards visible logic
+const getVisibleCards = () => {
+  const w = width.value
+  if (w >= 1536) return 6
+  if (w >= 1280) return 5
+  if (w >= 1024) return 4
+  if (w >= 820) return 3
   return 2
 }
 
-const pages = computed(() => Math.ceil(games.length / visibleCards()))
+// ✅ Computed pagination
+const pages = computed(() => Math.ceil(games.length / getVisibleCards()))
 const currentDot = computed(() => {
   if (pages.value <= 6) return currentPage.value
   const step = (pages.value - 1) / 5
   return Math.min(Math.round(currentPage.value / step), 5)
 })
 
-function scrollLeft() {
+// ✅ Scroll functions
+const updateCurrentPage = (dir) => {
+  currentPage.value = Math.min(
+    Math.max(currentPage.value + dir, 0),
+    pages.value - 1
+  )
+}
+
+const scrollLeft = () => {
   if (!slider.value) return
-  slider.value.scrollBy({ left: -cardWidth.value * visibleCards(), behavior: 'smooth' })
+  slider.value.scrollBy({
+    left: -cardWidth.value * getVisibleCards(),
+    behavior: 'smooth',
+  })
   updateCurrentPage(-1)
 }
 
-function scrollRight() {
+const scrollRight = () => {
   if (!slider.value) return
-  slider.value.scrollBy({ left: cardWidth.value * visibleCards(), behavior: 'smooth' })
+  slider.value.scrollBy({
+    left: cardWidth.value * getVisibleCards(),
+    behavior: 'smooth',
+  })
   updateCurrentPage(1)
 }
 
-function updateCurrentPage(direction) {
-  currentPage.value = Math.min(Math.max(currentPage.value + direction, 0), pages.value - 1)
-}
+// ✅ Mounted
+onMounted(async () => {
+  updateWidth()
+  window.addEventListener('resize', updateWidth)
 
-onMounted(() => {
+  await nextTick()
   if (slider.value) {
     const firstCard = slider.value.querySelector('div')
-    cardWidth.value = firstCard.offsetWidth + parseInt(getComputedStyle(firstCard).marginRight)
+    if (firstCard) {
+      const style = getComputedStyle(firstCard)
+      cardWidth.value = firstCard.offsetWidth + parseInt(style.marginRight)
+    }
+  }
+})
+
+// ✅ Cleanup
+onBeforeUnmount(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('resize', updateWidth)
   }
 })
 </script>
+
+
+
+
+
 
 <style scoped>
 .scrollbar-hide::-webkit-scrollbar {

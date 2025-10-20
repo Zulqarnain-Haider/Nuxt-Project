@@ -7,7 +7,7 @@
     <div class="flex items-center gap-3 md:gap-4 xl:gap-6">
       <!--  Hamburger: visible on mobile + iPads -->
       <button class="block xl:hidden text-2xl" @click="isOpen = true">
-        <img src="/games/HameburgerMenu.log.svg" alt="menu" class="" />
+        <img src="/games/HameburgerMenu.log.svg" alt="menu" />
       </button>
 
       <!--  Logo -->
@@ -40,7 +40,7 @@
         </li>
       </ul>
 
-      <!--  Search (desktop only, left side) -->
+      <!--  Search (desktop only) -->
       <button class="hidden xl:flex text-lg">
         <img src="/games/NavSearch.icon.svg" alt="search" class="w-5" />
       </button>
@@ -48,66 +48,54 @@
 
     <!-- ========== RIGHT SECTION ========== -->
     <div class="flex items-center gap-2 sm:gap-3 md:gap-4">
-      <!-- 📱 Mobile + iPad (up to 1180 px) -->
+      <!-- 📱 Mobile + iPad -->
       <div class="flex xl:hidden items-center gap-2 sm:gap-3 md:gap-4">
         <!-- Search -->
         <button class="text-xl hover:text-primary">
-          <img src="/games/NavSearch.icon.svg" alt="search"/>
+          <img src="/games/NavSearch.icon.svg" alt="search" />
         </button>
 
-        <!--  Map + EN + USD for iPad only -->
-        <!-- <div class="hidden sm:flex items-center gap-3 md:gap-4">
-          <button class="flex items-center gap-1  hover:text-primary">
-            <i class="fa-solid fa-location-dot text-[18px]"></i><span class="text-[14px]">Spain</span>
-          </button> -->
-          <!-- <div class="relative group">
-            <button class="flex items-center gap-1 text-[12px] lg:text-[10px] hover:text-primary">
-              EN <img src="/games/arrowsHeader.icon.svg" class="w-3" />
-            </button>
-            <ul
-              class="absolute right-0 mt-2 hidden group-hover:block bg-surface border border-outline rounded shadow-lg text-sm"
-            >
-              <li class="px-3 py-2 hover:bg-outline hover:text-white">EN</li>
-              <li class="px-3 py-2 hover:bg-outline hover:text-white">FR</li>
-              <li class="px-3 py-2 hover:bg-outline hover:text-white">DE</li>
-            </ul>
-          </div>
-          <div class="relative group">
-            <button class="flex items-center gap-1 text-[12px] hover:text-primary">
-              USD <img src="/games/arrowsHeader.icon.svg" class="w-3" />
-            </button>
-            <ul
-              class="absolute right-0 mt-2 hidden group-hover:block bg-surface border border-outline rounded shadow-lg text-sm"
-            >
-              <li class="px-3 py-2 hover:bg-outline hover:text-white">USD</li>
-              <li class="px-3 py-2 hover:bg-outline hover:text-white">EUR</li>
-              <li class="px-3 py-2 hover:bg-outline hover:text-white">PKR</li>
-            </ul>
-          </div> -->
-
-        <!-- Sign In -->
+        <!-- 🔹 Sign In or Avatar -->
         <NuxtLink
-          to="/signin"
-          class="bg-primary text-mainText px-4 py-1.5 md:py-1.5 rounded-md text-xs font-poppins sm:text-sm font-meum hover:opacity-90 transition"
+          v-if="!isLoggedIn"
+          to="/auth/login"
+          class="bg-primary text-mainText px-4 py-1.5 md:py-1.5 rounded-md text-xs font-poppins sm:text-sm font-medium hover:opacity-90 transition"
         >
           Sign In
         </NuxtLink>
 
+        <div v-else class="relative group">
+          <i
+            class="fa-solid fa-user-circle text-primary text-2xl cursor-pointer"
+          ></i>
+          <div
+            class="absolute right-0 mt-2 hidden group-hover:block bg-surface border border-outline rounded-md shadow-lg"
+          >
+            <button
+              class="px-3 py-2 text-sm hover:text-primary w-full text-left"
+              @click="logoutUser"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+
         <img
-        src="/games/Navbar-logo.svg.svg"
-        alt="E-Game Store"
-        class="h-8 sm:h-9 xl:h-8 w-auto flex xl:hidden"
-      />
+          src="/games/Navbar-logo.svg.svg"
+          alt="E-Game Store"
+          class="h-8 sm:h-9 xl:h-8 w-auto flex xl:hidden"
+        />
       </div>
 
-      <!--  Desktop / Laptop (≥1181 px) -->
+      <!-- 💻 Desktop -->
       <div class="hidden xl:flex items-center gap-4 2xl:gap-6">
         <button class="flex items-center text-[13px] hover:text-primary font-roboto">
           <i class="fa-solid fa-location-dot text-[18px] mr-1"></i>Spain
         </button>
+
         <div class="relative group">
           <button class="flex items-center gap-1 text-[12px] hover:text-primary font-roboto">
-            EN <img src="/games/arrowsHeader.icon.svg" class="w-3 hover:text-primary" />
+            EN <img src="/games/arrowsHeader.icon.svg" class="w-3" />
           </button>
           <ul
             class="absolute right-0 mt-2 hidden group-hover:block bg-surface border
@@ -118,9 +106,10 @@
             <li class="px-3 py-2 hover:bg-outline hover:text-white">DE</li>
           </ul>
         </div>
+
         <div class="relative group">
           <button class="flex items-center gap-1 text-[12px] hover:text-primary font-roboto">
-            USD <img src="/games/arrowsHeader.icon.svg" class="w-3 hover:text-primary" />
+            USD <img src="/games/arrowsHeader.icon.svg" class="w-3" />
           </button>
           <ul
             class="absolute right-0 mt-2 hidden group-hover:block bg-surface border
@@ -129,35 +118,62 @@
             <li class="px-3 py-2 hover:bg-outline hover:text-white">USD</li>
             <li class="px-3 py-2 hover:bg-outline hover:text-white">EUR</li>
             <li class="px-3 py-2 hover:bg-outline hover:text-white">PKR</li>
+            <li class="px-3 py-2 hover:bg-outline hover:text-white">YUN</li>
+            <li class="px-3 py-2 hover:bg-outline hover:text-white">RYL</li>
+
           </ul>
         </div>
+
+        <!-- 🔹 Sign In / Avatar (Desktop) -->
         <NuxtLink
-          to="/signin"
+          v-if="!isLoggedIn"
+          to="/auth/login"
           class="bg-primary text-mainText px-4 py-1.5 rounded-md 
           text-[15px] font-medium hover:opacity-90 transition font-roboto"
         >
           Sign In
         </NuxtLink>
+
+        <div v-else class="relative group font-poppins">
+          <i
+            class="fa-solid fa-user-circle text-primary text-3xl cursor-pointer"
+          ></i>
+          <div
+            class="absolute right-0 mt-2 hidden group-hover:block bg-surface border border-outline rounded-md shadow-lg"
+          >
+            <button
+              class="px-2 py-2 text-sm text-mainText flex items-center font-semibold hover:text-primary w-full text-left"
+              @click="logoutUser"
+            >
+              Logout
+              <i class="fa-solid fa-arrow-right-from-bracket ml-2"></i>
+            </button>
+            <NuxtLink to="/auth/profile">
+              <button
+              class="px-3 py-2 text-sm text-mainText flex items-center font-semibold hover:text-primary w-full text-left"
+              @click="logoutUser"
+            >
+              Profile
+              <i class="fa-solid fa-arrow-right-to-bracket ml-2"></i>
+            </button>
+            </NuxtLink>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- ========== SLIDE SIDEBAR (mobile + iPads) ========== -->
+    <!-- ====== Sidebar (mobile) ====== -->
     <transition name="slide">
       <div v-if="isOpen" class="fixed inset-0 z-40 flex">
         <div class="absolute inset-0 bg-black bg-opacity-50" @click="isOpen = false"></div>
         <div class="relative z-50 h-full w-72 bg-bgDark shadow-lg flex flex-col">
-          <!-- Header -->
           <div class="flex items-center justify-between px-3 py-3 border-b border-outline">
-            <div class="flex items-center gap-3">
-              <img src="/games/Navbar-logo.svg.svg" alt="Logo" class="h-6" />
-              <button><img src="/games/NavSearch.icon.svg" alt="search" class="w-" /></button>
-            </div>
+            <img src="/games/Navbar-logo.svg.svg" alt="Logo" class="h-6" />
             <button @click="isOpen = false" class="text-2xl text-primary">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
 
-          <!-- Links -->
           <ul class="flex flex-col gap-4 px-6 py-4 font-medium font-poppins text-lg">
             <li v-for="(link, i) in links" :key="i">
               <NuxtLink
@@ -169,41 +185,6 @@
               </NuxtLink>
             </li>
           </ul>
-
-          <!-- Footer (mobile only) -->
-          <div class="mt-2 border-t border-outline px-6 py-4 flex items-center justify-between ">
-        <!-- Language dropdown -->
-        <div class="relative group">
-          <button class="flex items-center gap-2 text-sm hover:text-primary font-roboto">
-            EN <img src="/games/arrowsHeader.icon.svg" class="w-3" />
-          </button>
-          <ul
-            class="absolute left-0 mt-2 hidden group-hover:block bg-surface border
-             border-outline rounded shadow-lg text-sm"
-          >
-            <li class="px-3 py-2 hover:bg-outline hover:text-white">EN</li>
-            <li class="px-3 py-2 hover:bg-outline hover:text-white">FR</li>
-            <li class="px-3 py-2 hover:bg-outline hover:text-white">DE</li>
-          </ul>
-        </div>
-
-        <!-- Currency dropdown -->
-        <div class="relative group">
-          <button class="flex items-center gap-2 text-sm hover:text-primary font-roboto">
-            USD <img src="/games/arrowsHeader.icon.svg" class="w-3" />
-          </button>
-          <ul
-            class="absolute left-0 mt-2 hidden group-hover:block bg-surface border border-outline rounded shadow-lg text-sm"
-          >
-            <li class="px-3 py-2 hover:bg-outline hover:text-white">USD</li>
-            <li class="px-3 py-2 hover:bg-outline hover:text-white">EUR</li>
-            <li class="px-3 py-2 hover:bg-outline hover:text-white">PKR</li>
-          </ul>
-        </div>
-
-       <button class="hover:text-primary text-[18px]">
-        <i class="fa-solid fa-location-dot"></i> <span class="text-[15px]">Spain</span></button>
-          </div>
         </div>
       </div>
     </transition>
@@ -211,11 +192,21 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue"
-import { useRoute } from "vue-router"
+import { ref, computed, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useUserStore } from '~/stores/userStore'
 
 const route = useRoute()
+const router = useRouter()
 const isOpen = ref(false)
+const userStore = useUserStore()
+
+const isLoggedIn = computed(() => !!userStore.currentUser)
+
+const logoutUser = () => {
+  userStore.logout()
+  router.push('/auth/login')
+}
 
 const links = [
   { label: "Home", path: "/" },
