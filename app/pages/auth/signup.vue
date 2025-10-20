@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen font-poppins px-4 bg-page-gradient">
+  <div class="flex items-center justify-center min-h-screen font-poppins px-8 bg-page-gradient">
     <div class="w-full max-w-md text-mainText py-12">
       <h2 class="text-2xl font-semibold text-center mb-8 font-poppins">Get Started Now</h2>
 
@@ -191,10 +191,10 @@
 
       <!-- Social Icons -->
       <div class="flex justify-center gap-4 mb-6">
-        <img src="/games/Signinwith1.svg" alt="" class="cursor-pointer" />
-        <img src="/games/Signinwith2.svg" alt="" class="cursor-pointer" />
-        <img src="/games/Signinwith3.svg" alt="" class="cursor-pointer" />
-        <img src="/games/Signinwith4.svg" alt="" class="cursor-pointer" />
+        <NuxtImg src="/games/Signinwith1.svg" alt="Google" class="cursor-pointer" quality="80" densities="x1" loading="=lazy" />
+        <NuxtImg src="/games/Signinwith2.svg" alt="Google" class="cursor-pointer" quality="80" densities="x1" loading="=lazy" />
+        <NuxtImg src="/games/Signinwith3.svg" alt="Google" class="cursor-pointer" quality="80" densities="x1" loading="=lazy" />
+        <NuxtImg src="/games/Signinwith4.svg" alt="Google" class="cursor-pointer" quality="80" densities="x1" loading="=lazy" />
       </div>
 
       <!-- Login Link -->

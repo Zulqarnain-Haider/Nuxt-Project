@@ -1,10 +1,11 @@
 <template>
   <section
-    class="min-h-screen flex flex-col md:flex-row md:-mt-[2.3rem] items-center justify-center text-white px-4 md:px-10"
+    class="min-h-screen flex flex-col md:flex-row -mt-[2.3rem] md:-mt-[2.3rem] items-center justify-center text-white px-4 md:px-10"
   >
     <!-- Left Image -->
     <div class="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-      <NuxtImg src="/games/ForgotPasswordLeft.png" alt="" quality="80" format="webp" densities="x1" loading="lazy" />
+      <NuxtImg src="/games/ForgotPasswordLeft.png" alt="" quality="80" format="webp"
+       densities="x1" loading="lazy" class="max-w-md w-full object-contain" />
       <!-- <img
         src="/games/ForgotPasswordLeft.png"
         alt="Forgot Password Left"
@@ -18,11 +19,7 @@
     >
       <!-- Icon -->
       <div class="flex mb-4">
-        <img
-          src="/games/ForgotPasswordLock.svg"
-          alt="Lock Icon"
-          class=""
-        />
+      <NuxtImg src="/games/ForgotPasswordLock.svg" alt="" quality="80" densities="x1" loading="lazy" />
       </div>
 
       <!-- Heading -->
@@ -35,9 +32,7 @@
 
       <!-- Email Input -->
       <div class="relative mb-4">
-        <img
-          src="/games/ForgotPasswordEmail.svg"
-          alt="Email Icon"
+      <NuxtImg src="/games/ForgotPasswordEmail.svg" alt="" quality="80" densities="x1" loading="lazy" 
           class="absolute left-3 top-5 -translate-y-1/2 w-5 h-5"
         />
         <input

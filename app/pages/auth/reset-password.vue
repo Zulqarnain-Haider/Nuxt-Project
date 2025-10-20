@@ -1,14 +1,16 @@
 <template>
   <section
-    class="relative h-screen flex flex-col  md:-mt-[2.3rem] md:flex-row items-center justify-center  text-white px-4 md:px-10 overflow-hidden"
+    class="relative min-h-screen flex flex-col  md:-mt-[2.3rem] md:flex-row items-center justify-center  text-white px-4 md:px-10 overflow-hidden"
   >
     <!-- Left Image -->
     <div class="w-full md:w-1/2 flex justify-center mb-8 md:mb-0 z-10">
-      <img
+      <NuxtImg src="/games/ForgotPasswordLeft.png" alt="" quality="80" format="webp"
+       densities="x1" loading="lazy" class="max-w-md w-full object-contain" />
+      <!-- <img
         src="/games/ForgotPasswordLeft.png"
         alt="Forgot Password Left"
         class="max-w-md w-full object-contain rounded-3xl"
-      />
+      /> -->
     </div>
 
     <!-- Right Content -->
@@ -16,11 +18,10 @@
       class="w-full md:w-1/2 flex flex-col justify-center font-inter max-w-md mx-auto rounded-3xl p-9 md:p-14 transition-all duration-500"
     >
       <!-- Icon -->
+       
       <div class="flex mb-4">
-        <img
-          src="/games/ForgotPasswordMainEmail.svg"
-          alt="Main Icon"
-        />
+         <NuxtImg src="/games/ForgotPasswordMainEmail.svg" alt="" quality="80"
+       densities="x1" loading="lazy" class="" />
       </div>
 
       <!-- Heading -->
@@ -33,8 +34,8 @@
 
       <!-- New Password -->
       <div class="relative mb-4">
-       <img src="/games/InputsLockicon.svg" alt="" class="absolute left-3 top-11
-        -translate-y-1/2 text-inputsIn">
+         <NuxtImg src="/games/InputsLockicon.svg" alt="" quality="80"
+       densities="x1" loading="lazy" class="-translate-y-1/2 text-inputsIn absolute left-3 top-11" />
         <label class="block mb-1 text-sm">New Password</label>
         <input
           :type="showNewPassword ? 'text' : 'password'"
@@ -52,9 +53,8 @@
 
       <!-- Confirm Password -->
       <div class="relative mb-4">
-       <img src="/games/InputsLockicon.svg" alt="" class="absolute left-3 top-11
-        -translate-y-1/2 text-inputsIn">
-
+      <NuxtImg src="/games/InputsLockicon.svg" alt="" quality="80"
+       densities="x1" loading="lazy" class="-translate-y-1/2 text-inputsIn absolute left-3 top-11" />
         <label class="block mb-1 text-sm">Confirm New Password</label>
         <input
           :type="showConfirmPassword ? 'text' : 'password'"
