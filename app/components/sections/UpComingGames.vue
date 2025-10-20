@@ -39,7 +39,7 @@
       <!-- ✅ Left Arrow -->
       <button
         @click="scrollLeft"
-        class="hidden md:flex absolute -left-3 lg:left-2 xl:-left-5 top-1/2 -translate-y-1/2 z-[60] bg-black/40 p-3 border border-white hover:bg-primary/70 transition"
+        class="hidden md:flex absolute -left-3 lg:left-2 xl:-left-5 top-1/2 -translate-y-1/2 z-30 bg-black/20 p-3 hover:bg-primary/70 transition"
       >
         <img src="/games/SliderarrowAs.png" alt="Prev" class="" />
       </button>
@@ -47,7 +47,7 @@
       <!-- ✅ Right Arrow -->
       <button
         @click="scrollRight"
-        class="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-[60] bg-black/40 p-3 border border-white hover:bg-primary/70 transition"
+        class="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-30 bg-black/20 p-3 hover:bg-primary/70 transition"
       >
         <img src="/games/SlidersRightarrow.svg" alt="Next" class="" />
       </button>
@@ -61,8 +61,8 @@
         class="rounded-full transition-all duration-300"
         :class="[
           currentDot === i - 1
-            ? 'bg-primary w-3 h-3'
-            : 'bg-white/30 w-2 h-2'
+            ? 'bg-primary w-4 h-4'
+            : 'bg-onPrimary w-2 h-2'
         ]"
       ></span>
     </div>

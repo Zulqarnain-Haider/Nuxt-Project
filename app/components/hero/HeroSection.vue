@@ -8,7 +8,7 @@
 
     <!-- Content -->
     <div
-      class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 px-3 pb-6 md:pt-6 md:pb-20 md lg:pl-12"
+      class="relative z-10 flex flex-col max-w-7xl mx-auto lg:flex-row items-center justify-between gap-10 px-3 pb-6 md:pt-6 md:pb-20 md lg:pl-12"
     >
       <!-- LEFT SECTION -->
       <div
@@ -65,12 +65,12 @@
         >
 
        <!--       Customer Review Overlap Text -->
-       <div
+       <!-- <div
          class="absolute top-[38%] left-1/4 -translate-x-1/2 z-30 text-white 
     font-semibold text-base sm:text-2xl font-poppins whitespace-nowrap"
        >
           Customer Review 
-       </div>
+       </div> -->
 
           <!-- Large Thumbnail -->
           <div

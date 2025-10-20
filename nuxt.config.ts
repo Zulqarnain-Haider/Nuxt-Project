@@ -14,12 +14,14 @@ export default defineNuxtConfig({
 
     app: {
     head: {
-      title: 'E-Game-Store',  
+      title: "E-GAMESTORE",
       link: [
-
-        { rel: 'icon', type: 'image/svg+xml', href: '/EE-favicon.png' }, 
-
-          // Font Awesome (already there)
+        {
+          rel: "icon",
+          type: "image/x-icon",
+          href: "/favicon.svg",
+        },
+        // Font Awesome (already there)
         {
           rel: "stylesheet",
           href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css",

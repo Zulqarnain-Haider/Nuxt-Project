@@ -1,8 +1,6 @@
 <template>
-  <nav
-    class="bg-black text-mainText px-4 sm:px-6 md:px-8 lg:px-10 py-4 md:py-5 lg:py-6
-    sticky top-0 z-50 flex items-center justify-between flex-wrap"
-  >
+  <nav class="bg-bgNav text-mainText px-4 sm:px-6 md:px-8 lg:px-10 py-4 md:py-5 lg:py-6
+    sticky top-0 z-50 flex items-center justify-between flex-wrap">
     <!-- ========== LEFT SECTION ========== -->
     <div class="flex items-center gap-3 md:gap-4 xl:gap-6">
       <!--  Hamburger: visible on mobile + iPads -->
@@ -11,32 +9,18 @@
       </button>
 
       <!--  Logo -->
-      <img
-        src="/games/Navbar-logo.svg.svg"
-        alt="E-Game Store"
-        class="h-8 sm:h-9 xl:h-8 w-auto hidden xl:flex"
-      />
+      <img src="/games/Navbar-logo.svg.svg" alt="E-Game Store" class="h-8 sm:h-9 xl:h-8 w-auto hidden xl:flex" />
 
       <!--  Nav links (visible on laptops / desktops) -->
-      <ul
-        class="hidden xl:flex items-center gap-4 2xl:gap-6 font-medium text-[17px] 2xl:text-[19px]"
-      >
-        <li
-          v-for="(link, i) in links"
-          :key="i"
-          class="relative group transition-all"
-        >
-          <NuxtLink
-            :to="link.path"
-            :class="isActive(link.path) ? 'text-primary' : 'hover:text-primary'"
-            class="transition-colors"
-          >
+      <ul class="hidden xl:flex items-center gap-4 2xl:gap-6 font-medium text-[17px] 2xl:text-[19px]">
+        <li v-for="(link, i) in links" :key="i" class="relative group transition-all">
+          <NuxtLink :to="link.path" :class="isActive(link.path) ? 'text-primary' : 'hover:text-primary'"
+            class="transition-colors">
             {{ link.label }}
           </NuxtLink>
           <span
             class="absolute left-1/3 -translate-x-1/2 bottom-[-3px] h-[2px] bg-primary rounded transition-all duration-300"
-            :class="isActive(link.path) ? 'w-3/5' : 'w-0 group-hover:w-3/5'"
-          ></span>
+            :class="isActive(link.path) ? 'w-3/5' : 'w-0 group-hover:w-3/5'"></span>
         </li>
       </ul>
 
@@ -97,10 +81,8 @@
           <button class="flex items-center gap-1 text-[12px] hover:text-primary font-roboto">
             EN <img src="/games/arrowsHeader.icon.svg" class="w-3" />
           </button>
-          <ul
-            class="absolute right-0 mt-2 hidden group-hover:block bg-surface border
-             border-outline rounded shadow-lg text-sm"
-          >
+          <ul class="absolute right-0 mt-2 hidden group-hover:block bg-surface border
+             border-outline rounded shadow-lg text-sm">
             <li class="px-3 py-2 hover:bg-outline hover:text-white">EN</li>
             <li class="px-3 py-2 hover:bg-outline hover:text-white">FR</li>
             <li class="px-3 py-2 hover:bg-outline hover:text-white">DE</li>
@@ -111,10 +93,8 @@
           <button class="flex items-center gap-1 text-[12px] hover:text-primary font-roboto">
             USD <img src="/games/arrowsHeader.icon.svg" class="w-3" />
           </button>
-          <ul
-            class="absolute right-0 mt-2 hidden group-hover:block bg-surface border
-             border-outline rounded shadow-lg text-sm"
-          >
+          <ul class="absolute right-0 mt-2 hidden group-hover:block bg-surface border
+             border-outline rounded shadow-lg text-sm">
             <li class="px-3 py-2 hover:bg-outline hover:text-white">USD</li>
             <li class="px-3 py-2 hover:bg-outline hover:text-white">EUR</li>
             <li class="px-3 py-2 hover:bg-outline hover:text-white">PKR</li>
@@ -166,9 +146,12 @@
     <transition name="slide">
       <div v-if="isOpen" class="fixed inset-0 z-40 flex">
         <div class="absolute inset-0 bg-black bg-opacity-50" @click="isOpen = false"></div>
-        <div class="relative z-50 h-full w-72 bg-bgDark shadow-lg flex flex-col">
+        <div class="relative z-50 h-full w-72 bg-bgNav shadow-lg flex flex-col">
+          <!-- Header -->
           <div class="flex items-center justify-between px-3 py-3 border-b border-outline">
-            <img src="/games/Navbar-logo.svg.svg" alt="Logo" class="h-6" />
+            <div class="flex items-center gap-3">
+              <img src="/games/Navbar-logo.svg.svg" alt="Logo" class="h-6" />
+            </div>
             <button @click="isOpen = false" class="text-2xl text-primary">
               <i class="fa-solid fa-xmark"></i>
             </button>
@@ -176,15 +159,44 @@
 
           <ul class="flex flex-col gap-4 px-6 py-4 font-medium font-poppins text-lg">
             <li v-for="(link, i) in links" :key="i">
-              <NuxtLink
-                :to="link.path"
-                :class="isActive(link.path) ? 'text-primary' : 'hover:text-primary'"
-                class="block py-2 transition-colors"
-              >
+              <NuxtLink :to="link.path" :class="isActive(link.path) ? 'text-primary' : 'hover:text-primary'"
+                class="block py-2 transition-colors">
                 {{ link.label }}
               </NuxtLink>
             </li>
           </ul>
+
+          <!-- Footer (mobile only) -->
+          <div class="mt-2 border-t border-outline px-6 py-4 flex items-center justify-between ">
+            <!-- Language dropdown -->
+            <div class="relative group">
+              <button class="flex items-center gap-2 text-sm hover:text-primary font-roboto">
+                EN <img src="/games/arrowsHeader.icon.svg" class="w-3" />
+              </button>
+              <ul class="absolute left-0 mt-2 hidden group-hover:block bg-bgNav border
+             border-outline rounded shadow-lg text-sm">
+                <li class="px-3 py-2 hover:bg-outline hover:text-white">EN</li>
+                <li class="px-3 py-2 hover:bg-outline hover:text-white">FR</li>
+                <li class="px-3 py-2 hover:bg-outline hover:text-white">DE</li>
+              </ul>
+            </div>
+
+            <!-- Currency dropdown -->
+            <div class="relative group">
+              <button class="flex items-center gap-2 text-sm hover:text-primary font-roboto">
+                USD <img src="/games/arrowsHeader.icon.svg" class="w-3" />
+              </button>
+              <ul
+                class="absolute left-0 mt-2 hidden group-hover:block bg-bgNav border border-outline rounded shadow-lg text-sm">
+                <li class="px-3 py-2 hover:bg-outline hover:text-white">USD</li>
+                <li class="px-3 py-2 hover:bg-outline hover:text-white">EUR</li>
+                <li class="px-3 py-2 hover:bg-outline hover:text-white">PKR</li>
+              </ul>
+            </div>
+
+            <button class="hover:text-primary text-[18px]">
+              <i class="fa-solid fa-location-dot"></i> <span class="text-[15px]">Spain</span></button>
+          </div>
         </div>
       </div>
     </transition>
@@ -210,14 +222,14 @@ const logoutUser = () => {
 
 const links = [
   { label: "Home", path: "/" },
-  { label: "PC Games", path: "/pc" },
-  { label: "Xbox", path: "/xbox" },
-  { label: "PlayStation", path: "/playstation" },
-  { label: "Nintendo", path: "/nintendo" },
-  { label: "Gift Cards", path: "/gifts" },
-  { label: "Deals", path: "/deals" },
-  { label: "Pre-orders", path: "/preorders" },
-  { label: "Blog", path: "/blog" },
+  { label: "PC Games", path: "#" },
+  { label: "Xbox", path: "#" },
+  { label: "PlayStation", path: "#" },
+  { label: "Nintendo", path: "#" },
+  { label: "Gift Cards", path: "#" },
+  { label: "Deals", path: "#" },
+  { label: "Pre-orders", path: "#" },
+  { label: "Blog", path: "#" },
 ]
 
 const isActive = (p) => route.path === p
@@ -229,6 +241,7 @@ watch(isOpen, (v) => (document.body.style.overflow = v ? "hidden" : "auto"))
 .slide-leave-active {
   transition: transform 0.3s ease;
 }
+
 .slide-enter-from,
 .slide-leave-to {
   transform: translateX(-100%);
