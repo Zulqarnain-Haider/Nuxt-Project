@@ -109,11 +109,12 @@ const games = [
 const slider = ref(null)
 const cardWidth = ref(0)
 const currentPage = ref(0)
+const windowWidth = ref(0)
 
 function visibleCards() {
-  if (window.innerWidth >= 1280) return 5
-  if (window.innerWidth >= 1024) return 4
-  if (window.innerWidth >= 820) return 3
+  if (windowWidth.value >= 1280) return 5
+  if (windowWidth.value >= 1024) return 4
+  if (windowWidth.value >= 820) return 3
   return 2
 }
 
@@ -126,25 +127,46 @@ const currentDot = computed(() => {
 
 function scrollLeft() {
   if (!slider.value) return
-  slider.value.scrollBy({ left: -cardWidth.value * visibleCards(), behavior: 'smooth' })
+  slider.value.scrollBy({
+    left: -cardWidth.value * visibleCards(),
+    behavior: 'smooth',
+  })
   updateCurrentPage(-1)
 }
 
 function scrollRight() {
   if (!slider.value) return
-  slider.value.scrollBy({ left: cardWidth.value * visibleCards(), behavior: 'smooth' })
+  slider.value.scrollBy({
+    left: cardWidth.value * visibleCards(),
+    behavior: 'smooth',
+  })
   updateCurrentPage(1)
 }
 
 function updateCurrentPage(direction) {
-  currentPage.value = Math.min(Math.max(currentPage.value + direction, 0), pages.value - 1)
+  currentPage.value = Math.min(
+    Math.max(currentPage.value + direction, 0),
+    pages.value - 1
+  )
 }
 
 onMounted(() => {
+  // ✅ Only run in the browser
+  windowWidth.value = window.innerWidth
+
+  const updateWidth = () => (windowWidth.value = window.innerWidth)
+  window.addEventListener('resize', updateWidth)
+
   if (slider.value) {
     const firstCard = slider.value.querySelector('div')
-    cardWidth.value = firstCard.offsetWidth + parseInt(getComputedStyle(firstCard).marginRight)
+    if (firstCard) {
+      cardWidth.value =
+        firstCard.offsetWidth + parseInt(getComputedStyle(firstCard).marginRight)
+    }
   }
+
+  // Cleanup
+  onUnmounted(() => window.removeEventListener('resize', updateWidth))
 })
 </script>
 

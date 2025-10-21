@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-icon', '@nuxt/image'], 
 
-    pinia: {
+  pinia: {
       // @ts-ignore
     autoImports: ['defineStore', 'storeToRefs']
   },

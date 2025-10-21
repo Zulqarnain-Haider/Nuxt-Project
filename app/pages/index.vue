@@ -8,7 +8,6 @@
   </div>
 
      <br>
-  <div class="min-h-screen text-white">
     <!-- Navbar is layout-level — already working -->
 
     <!-- Hero Section -->
