@@ -62,7 +62,7 @@
       </p>
 
       <!-- Verify Button -->
-       <NuxtLink to="/auth/reset-password">
+       <NuxtLink to="">
       <ButtonComponent
         full
         class="h-9 font-semibold font-poppins mt-3"

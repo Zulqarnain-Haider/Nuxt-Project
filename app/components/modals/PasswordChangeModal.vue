@@ -52,6 +52,9 @@
               </p>
             </div>
 
+             <!-- Global Error -->
+        <p v-if="globalError" class="text-error text-sm mb-2 text-center">{{ globalError }}</p>
+
             <form @submit.prevent="handleSave" class="w-full space-y-3 sm:space-y-4">
               <!-- Current Password -->
               <div class="text-left text-xs sm:text-sm">
@@ -69,6 +72,7 @@
                     placeholder="Enter current password"
                     class="w-full bg-transparent border border-outline text-inputsIn rounded-md 
                     px-10 py-2 focus:outline-none focus:border-primary placeholder-inputsIn"
+                    :class="errors.current ? 'border-error' : 'border-outline focus:border-primary'"
                   />
                   <button
                     type="button"
@@ -78,6 +82,7 @@
                     <i :class="showCurrent ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
                   </button>
                 </div>
+                  <p v-if="errors.current" class="text-error text-xs mt-1">{{ errors.current }}</p>
               </div>
 
               <!-- New Password -->
@@ -96,6 +101,7 @@
                     placeholder="Enter new password"
                     class="w-full bg-transparent border border-outline text-inputsIn rounded-md
                      px-10 py-2 focus:outline-none focus:border-primary placeholder-inputsIn"
+                   :class="errors.new ? 'border-error' : 'border-outline focus:border-primary'"
                   />
                   <button
                     type="button"
@@ -105,6 +111,7 @@
                     <i :class="showNew ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
                   </button>
                 </div>
+              <p v-if="errors.new" class="text-error text-xs mt-1">{{ errors.new }}</p>
               </div>
 
               <!-- Confirm Password -->
@@ -123,6 +130,7 @@
                     placeholder="Confirm new password"
                     class="w-full bg-transparent border border-outline text-inputsIn rounded-md
                      px-10 py-2 focus:outline-none focus:border-primary placeholder-inputsIn"
+                   :class="errors.confirm ? 'border-error' : 'border-outline focus:border-primary'"
                   />
                   <button
                     type="button"
@@ -132,6 +140,7 @@
                     <i :class="showConfirm ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
                   </button>
                 </div>
+                <p v-if="errors.confirm" class="text-error text-xs mt-1">{{ errors.confirm }}</p>
               </div>
 
               <button
@@ -156,9 +165,12 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useUserStore } from '~/stores/userStore'
 
 const props = defineProps({ visible: Boolean })
 const emit = defineEmits(['close'])
+
+const userStore = useUserStore()
 
 const success = ref(false)
 const currentPassword = ref('')
@@ -169,14 +181,38 @@ const showCurrent = ref(false)
 const showNew = ref(false)
 const showConfirm = ref(false)
 
+
+const errors = ref({})
+const globalError = ref('')
+
 const handleSave = () => {
-  if (newPassword.value && newPassword.value === confirmPassword.value) {
-    setTimeout(() => {
-      success.value = true
-    }, 400)
-  } else {
-    alert('Passwords do not match!')
+errors.value = {}
+  globalError.value = ''
+  const storedUser = userStore.currentUser
+
+  if (!storedUser) {
+    globalError.value = 'No user found. Please login first.'
+    return
   }
+
+  // Validation
+  if (!currentPassword.value) errors.value.current = 'Please enter your current password.'
+  else if (currentPassword.value !== storedUser.password)
+    errors.value.current = 'Incorrect current password.'
+
+  if (!newPassword.value) errors.value.new = 'Please enter a new password.'
+  if (!confirmPassword.value) errors.value.confirm = 'Please confirm your new password.'
+  else if (newPassword.value !== confirmPassword.value)
+    errors.value.confirm = 'New passwords do not match.'
+
+  if (Object.keys(errors.value).length > 0) {
+    globalError.value = 'Please fix the highlighted fields.'
+    return
+  }
+
+  // Update password
+  userStore.updatePassword(newPassword.value)
+  setTimeout(() => (success.value = true), 400)
 }
 
 const closeModal = () => {

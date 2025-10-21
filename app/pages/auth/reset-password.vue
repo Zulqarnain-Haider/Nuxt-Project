@@ -98,15 +98,18 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '~/stores/userStore'
 import ButtonComponent from '~/components/ui/Button.vue'
 
 const router = useRouter()
+const userStore = useUserStore()
 
 const newPassword = ref('')
 const confirmPassword = ref('')
 const error = ref('')
 const showNewPassword = ref(false)
 const showConfirmPassword = ref(false)
+
 
 const saveNewPassword = () => {
   error.value = ''
@@ -121,7 +124,25 @@ const saveNewPassword = () => {
     return
   }
 
+    // ✅ Get the user identifier saved from Forgot page
+  const identifier = localStorage.getItem('resetIdentifier')
+
+  if (!identifier) {
+    error.value = 'Something went wrong. Please restart reset process.'
+    return
+  }
+
+  // Call store action
+  const result = userStore.resetPassword(identifier, newPassword.value)
+
+  if (!result.success) {
+    error.value = result.message
+  } else {
+    // Clear resetIdentifier
+    localStorage.removeItem('resetIdentifier')
+
   // ✅ Redirect to success page
   router.push('/auth/changedsuccessfully')
+} 
 }
 </script>

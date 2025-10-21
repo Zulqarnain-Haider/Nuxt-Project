@@ -137,7 +137,7 @@
                   inputmode="numeric"
                   maxlength="4"
                   placeholder="YYYY"
-                  class="w-full bg-bgDark rounded-md px-3 py-3 text-md text-white focus:outline-none focus:ring-1 focus:ring-primary
+                  class="w-full bg-bgDark rounded-md px-2 py-3 text-md text-white focus:outline-none focus:ring-1 focus:ring-primary
               placeholder:text-inputsIn pr-8 transition-all duration-200"
                 />
                 <i

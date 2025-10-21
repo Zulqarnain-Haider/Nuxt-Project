@@ -108,6 +108,11 @@ const rememberMe = ref(false)
 const errors = ref({})
 const globalError = ref('')
 
+
+definePageMeta({
+  layout: 'auth'
+})
+
 // Tailwind Input Style
 const inputClass = (field) => [
   'w-full h-10 p-2 text-xs rounded-md bg-bgDark font-poppins focus:outline-none transition-all duration-200 placeholder:text-inputsIn',
@@ -130,20 +135,31 @@ const validateForm = () => {
 // Login Function
 const handleLogin = () => {
   if (!validateForm()) {
-    globalError.value = 'Please fix the highlighted fields.'
+    globalError.value = 'Please fill the highlighted fields.'
     return
   }
 
-  // Mock login logic (replace later with userStore)
-  if (identifier.value === 'test@example.com' && password.value === '123456') {
-    // Save rememberMe in localStorage if checked
+    const res = userStore.login(identifier.value, password.value)
+
+  if (!res.success) {
+    globalError.value = res.message
+  } else {
+    globalError.value = ''
     if (rememberMe.value) localStorage.setItem('rememberMe', 'true')
     else localStorage.removeItem('rememberMe')
-
-    globalError.value = ''
     navigateTo('/profile')
-  } else {
-    globalError.value = 'Invalid credentials. Please try again.'
   }
+
+  // // Mock login logic (replace later with userStore)
+  // if (identifier.value === 'test@example.com' && password.value === '123456') {
+  //   // Save rememberMe in localStorage if checked
+  //   if (rememberMe.value) localStorage.setItem('rememberMe', 'true')
+  //   else localStorage.removeItem('rememberMe')
+
+  //   globalError.value = ''
+  //   navigateTo('/profile')
+  // } else {
+  //   globalError.value = 'Invalid credentials. Please try again.'
+  // }
 }
 </script>

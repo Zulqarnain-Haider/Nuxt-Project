@@ -65,9 +65,17 @@
         </NuxtLink>
 
         <div v-else class="relative group">
-          <i
-            class="fa-solid fa-user-circle text-primary text-2xl cursor-pointer"
-          ></i>
+          <img
+  v-if="userStore.currentUser?.avatar"
+  :src="userStore.currentUser.avatar"
+  alt="User Avatar"
+  class="w-10 h-10 rounded-full object-cover border-2 border-primary cursor-pointer"
+   />
+  <i
+  v-else
+  class="fa-solid fa-user-circle text-primary text-3xl cursor-pointer"
+    ></i>
+ 
           <div
             class="absolute right-0 mt-2 hidden group-hover:block bg-surface border border-outline rounded-md shadow-lg"
           >
@@ -76,6 +84,13 @@
               @click="logoutUser"
             >
               Logout
+            </button>
+             <button
+              class="px-3 py-2 text-sm text-mainText flex items-center font-semibold hover:text-primary w-full text-left"
+              @click="router.push('/profile')"
+            >
+              Profile
+              <i class="fa-solid fa-arrow-right-to-bracket ml-2"></i>
             </button>
           </div>
         </div>
@@ -135,9 +150,17 @@
         </NuxtLink>
 
         <div v-else class="relative group font-poppins">
-          <i
-            class="fa-solid fa-user-circle text-primary text-3xl cursor-pointer"
-          ></i>
+         <img
+  v-if="userStore.currentUser?.avatar"
+  :src="userStore.currentUser.avatar"
+  alt="User Avatar"
+  class="w-10 h-10 rounded-full object-cover border-2 border-primary cursor-pointer"
+/>
+<i
+  v-else
+  class="fa-solid fa-user-circle text-primary text-3xl cursor-pointer"
+></i>
+
           <div
             class="absolute right-0 mt-2 hidden group-hover:block bg-surface border border-outline rounded-md shadow-lg"
           >
@@ -151,7 +174,7 @@
             <NuxtLink to="/auth/profile">
               <button
               class="px-3 py-2 text-sm text-mainText flex items-center font-semibold hover:text-primary w-full text-left"
-              @click="logoutUser"
+              @click="router.push('/profile')"
             >
               Profile
               <i class="fa-solid fa-arrow-right-to-bracket ml-2"></i>
@@ -202,6 +225,17 @@ const isOpen = ref(false)
 const userStore = useUserStore()
 
 const isLoggedIn = computed(() => !!userStore.currentUser)
+
+watch(
+  () => userStore.currentUser,
+  (newVal) => {
+    if (newVal) {
+      localStorage.setItem('currentUser', JSON.stringify(newVal))
+    }
+  },
+  { deep: true }
+)
+
 
 const logoutUser = () => {
   userStore.logout()

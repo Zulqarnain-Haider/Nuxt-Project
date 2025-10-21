@@ -43,8 +43,8 @@
         />
       <p v-if="error" class="text-red-500 text-sm mt-2">{{ error }}</p>
       </div>
-        <NuxtLink to="/auth/otp-verification" class="">
-
+      
+     <NuxtLink to="" class="">
       <!-- Submit Button -->
       <ButtonComponent
         full
@@ -74,9 +74,20 @@ const handleSubmit = () => {
     error.value = 'Please enter your email.'
     return
   }
+
+  // Check user exists
+  const users = JSON.parse(localStorage.getItem('users') || '[]')
+  const exists = users.find(u => u.email === email.value || u.phone === email.value)
+
+  if (!exists) {
+    error.value = 'No account found with this email or phone.'
+    return
+  }
+
+
   error.value = ''
   // simulate OTP sending (can be replaced with backend)
-  localStorage.setItem('resetEmail', email.value)
+  localStorage.setItem('resetIdentifier', email.value)
   router.push('/auth/otp-verification')
 }
 </script>

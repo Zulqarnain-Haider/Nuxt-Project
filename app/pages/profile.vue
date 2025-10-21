@@ -1,113 +1,116 @@
 <template>
-  <div class="min-h-screen font-poppins text-mainText flex flex-col items-center py-10  animate-fadeIn">
-    <!-- 🧍‍♂️ Top Profile Card -->
+  <div
+    v-if="userStore.currentUser"
+    class="min-h-screen font-poppins text-mainText flex flex-col items-center py-10 animate-fadeIn"
+  >
+    <!-- Profile Card -->
     <div
       class="w-[90%] max-w-6xl bg-bgDark rounded-2xl flex items-center gap-6 px-6 py-6 shadow-lg"
     >
-      <!-- Profile Image -->
+      <!-- Avatar -->
       <div
-        class="w-20 h-20 rounded-full border-2 border-onMainText overflow-hidden flex-shrink-0"
+        class="relative w-20 h-20 rounded-full border-4 border-mainText overflow-hidden cursor-pointer group"
+        @click="triggerFileInput"
       >
         <img
-          src="/games/ProfileAvatar.png"
+          :src="previewImage || '/games/ProfileAvatar.png'"
           alt="User Avatar"
-          class="object-cover"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+        <div
+          class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+        >
+          <i class="fa-solid fa-camera text-white text-xl"></i>
+        </div>
+
+        <input
+          type="file"
+          accept="image/*"
+          ref="fileInput"
+          class="hidden"
+          @change="handleFileUpload"
         />
       </div>
 
       <!-- User Info -->
       <div class="flex flex-col">
-        <h2 class="text-2xl font-semibold text-mainText">Alex Rodriguez</h2>
-        <p class="text-onMainText text-sm">@Alex_Gamer_2024</p>
-
+        <h2 class="text-2xl font-semibold text-mainText">
+          {{ user?.fullName || 'Guest User' }}
+        </h2>
+        <p class="text-onMainText text-sm">{{ user?.username || '@Guest' }}</p>
         <div class="flex items-center gap-2 mt-1 text-sm text-onMainText">
           <i class="fa-solid fa-star text-secondary"></i>
           <span class="text-mainText">Level 47 Gamer</span>
-          <span class="">•</span>
-          <span>Member since 2020</span>
+          <span>•</span>
+          <span>Member since {{ user?.memberSince || '2024' }}</span>
         </div>
       </div>
     </div>
 
-    <!-- 📄 Personal Information Section -->
+    <!-- Info Section -->
     <div class="w-[90%] max-w-6xl mt-10">
-      <!-- Section Header -->
       <div class="flex items-center gap-2 mb-4">
-        <img src="/games/Profileicon.svg" alt="Profile Icon" class="" />
+        <img src="/games/Profileicon.svg" alt="Profile Icon" />
         <h3 class="text-lg font-semibold text-mainText">Personal Information</h3>
       </div>
 
-      <!-- Inputs Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Left Column -->
         <div class="flex flex-col gap-6">
-          <!-- Full Name -->
           <div>
             <label class="block text-sm text-onMainText mb-1">Full Name</label>
             <input
+              v-model="user.fullName"
               type="text"
-              placeholder="Alex Rodriguez"
-              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none
-               placeholder:text-mainText focus:ring-2 focus:ring-primary"
+              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
-          <!-- Email -->
           <div>
             <label class="block text-sm text-onMainText mb-1">Email</label>
             <input
+              v-model="user.email"
               type="email"
-              placeholder="alex.rodriguez@email.com"
-              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none
-               placeholder:text-mainText focus:ring-2 focus:ring-primary"
+              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
-          <!-- Bio -->
           <div>
             <label class="block text-sm text-onMainText mb-1">Bio</label>
             <textarea
+              v-model="user.bio"
               rows="4"
-              placeholder="Passionate gamer with over 10 years of experience. Love RPGs, FPS, and indie games. Always looking for new adventures!"
-              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none 
-            resize-none focus:ring-2 focus:ring-primary placeholder:text-mainText"
+              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none resize-none focus:ring-2 focus:ring-primary"
+              placeholder="Tell us about yourself..."
             ></textarea>
           </div>
         </div>
 
-        <!-- Right Column -->
         <div class="flex flex-col gap-6">
-          <!-- Username -->
           <div>
             <label class="block text-sm text-onMainText mb-1">Username</label>
             <input
+              v-model="user.username"
               type="text"
-              placeholder="@Alex_Gamer_2024"
-              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none
-               placeholder:text-mainText focus:ring-2 focus:ring-primary"
+              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
-          <!-- Phone -->
           <div>
             <label class="block text-sm text-onMainText mb-1">Phone</label>
             <input
+              v-model="user.phone"
               type="text"
-              placeholder="+1 (555) 123-4567"
-              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg 
-              placeholder:text-mainText outline-none focus:ring-2 focus:ring-primary"
+              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
-          <!-- Password -->
           <div class="relative">
             <label class="block text-sm text-onMainText mb-1">Password</label>
             <input
               type="password"
               value="***********"
               readonly
-              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none 
-              value:text-mainText focus:ring-2 focus:ring-primary"
+              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-primary"
             />
             <button
               class="absolute right-3 top-9 text-primary underline text-sm"
@@ -117,19 +120,16 @@
             </button>
           </div>
 
-        <!-- Password Change Modal -->
-    <PasswordChangeModal
-      :visible="showPasswordModal"
-      @close="showPasswordModal = false"
-    />
+          <PasswordChangeModal
+            :visible="showPasswordModal"
+            @close="showPasswordModal = false"
+          />
 
-
-          <!-- Birthday -->
           <div>
             <label class="block text-sm text-onMainText mb-1">Birthday date</label>
             <input
+              v-model="user.dob"
               type="date"
-              value="2000-10-17"
               class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
@@ -137,20 +137,77 @@
       </div>
     </div>
   </div>
+
+<!-- If user not logged in -->
+<div
+  v-else
+  class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-bgDark to-black text-center text-mainText animate-fadeIn"
+>
+  <div
+    class="bg-bgDark/80 backdrop-blur-md border border-primary/30 rounded-2xl p-10 shadow-2xl w-[90%] max-w-md"
+  >
+    <img
+      src="/games/ForgotPasswordLock.svg"
+      alt="Lock Icon"
+      class="w-20 h-20 mx-auto mb-6 opacity-90"
+    />
+    <h2 class="text-2xl font-semibold mb-3 text-white">
+      You’re not logged in
+    </h2>
+    <p class="text-onMainText mb-8">
+      Please log in to access your profile and manage your account settings.
+    </p>
+
+    <!-- ✅ Official styled button -->
+    <NuxtLink
+      to="/auth/login"
+      replace
+      class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition transform hover:scale-[1.03] shadow-md"
+    >
+      Go to Login
+    </NuxtLink>
+  </div>
+</div>
+
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import PasswordChangeModal from '~/components/modals/PasswordChangeModal.vue'
+import { useUserStore } from '~/stores/userStore'
+
+const userStore = useUserStore()
+const user = computed(() => userStore.currentUser || {})
+
+
+// definePageMeta({
+//   layout: 'auth'
+// })
+
+
+const previewImage = ref(userStore.currentUser?.avatar || '/games/ProfileAvatar.png')
+
+const fileInput = ref(null)
+const triggerFileInput = () => fileInput.value?.click()
+
+const handleFileUpload = (e) => {
+  const file = e.target.files[0]
+  if (!file) return
+  const reader = new FileReader()
+  reader.onload = (event) => {
+    const base64 = event.target.result
+    previewImage.value = base64
+    userStore.updateProfileImage(base64)
+  }
+  reader.readAsDataURL(file)
+}
 
 const showPasswordModal = ref(false)
-
-// Future: import { useUserStore } from '~/stores/userStore'
 </script>
 
 <style scoped>
-input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* icon colour white */
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(1);
   cursor: pointer;
 }
 </style>
