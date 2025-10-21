@@ -69,7 +69,7 @@
   v-if="userStore.currentUser?.avatar"
   :src="userStore.currentUser.avatar"
   alt="User Avatar"
-  class="w-10 h-10 rounded-full object-cover border-2 border-primary cursor-pointer"
+  class="w-10 h-10 rounded-full object-cover  cursor-pointer"
    />
   <i
   v-else
@@ -85,13 +85,15 @@
             >
               Logout
             </button>
+            <NuxtLink to="/profile">
              <button
               class="px-3 py-2 text-sm text-mainText flex items-center font-semibold hover:text-primary w-full text-left"
-              @click="router.push('/profile')"
+              @click=""
             >
               Profile
               <i class="fa-solid fa-arrow-right-to-bracket ml-2"></i>
             </button>
+            </NuxtLink>
           </div>
         </div>
 
@@ -154,7 +156,7 @@
   v-if="userStore.currentUser?.avatar"
   :src="userStore.currentUser.avatar"
   alt="User Avatar"
-  class="w-10 h-10 rounded-full object-cover border-2 border-primary cursor-pointer"
+  class="w-10 h-10 rounded-full object-cover cursor-pointer"
 />
 <i
   v-else

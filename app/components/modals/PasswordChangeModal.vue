@@ -6,16 +6,20 @@
     >
       <!-- ✅ Card -->
       <div
-        class="relative bg-center bg-no-repeat bg-contain flex flex-col items-center justify-center
-         text-center w-[90%] max-w-md aspect-[4/5] sm:aspect-[4/4] md:aspect-[3/4] p-8 rounded-[3rem] shadow-2xl animate-fadeIn"
-        :style="{ backgroundImage: success 
-          ? 'url(/games/PopupMainCard.png)' 
-          : 'url(/games/PopupMainCard.png)' }"
-      >
+        class="relative flex flex-col items-center justify-center
+         text-center w-[90%] max-w-lg aspect-[4/5] sm:aspect-[4/4] md:aspect-[3/4] 
+         overflow-hidden sm:p-8 rounded-[3rem] shadow-2xl animate-fadeIn">
+        <NuxtImg
+      src="/games/PopupMainCard.png"
+      alt="Popup Background"
+     quality="80"
+     format="webp"
+     densities="x1"  width="858px" height="663px" angle="0 deg"
+    class="absolute inset-0 w-full h-full object-contain object-center z-0"/>
 
         <!-- ✅ SUCCESS CONTENT -->
         <template v-if="success">
-          <div class="flex flex-col items-center justify-center space-y-6 scale-[0.6]">
+          <div class="flex flex-col items-center justify-center space-y-6 scale-[0.7]">
             <img
               src="/games/ResetPasswordSuccess.svg"
               alt="Success"
@@ -36,7 +40,7 @@
         <!-- ✅ PASSWORD FORM CONTENT -->
         <template v-else>
           <div class="flex flex-col items-center w-full max-w-xs 
-          sm:max-w-sm  space-y-4 sm:space-y-5 scale-50 ">
+          sm:max-w-sm  space-y-4 sm:space-y-5 scale-[0.46] sm:scale-[0.57]">
             <img
               src="/games/ForgotPasswordLock.svg"
               alt="Lock"

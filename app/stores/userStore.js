@@ -30,7 +30,7 @@ export const useUserStore = defineStore('user', {
     // 🔹 Signup action
     signup(newUser) {
       // Email OR Phone dono me se kisi ek ka match check
-      const exists = this.users.find(
+      const exists = this.users.some(
         u => u.email === newUser.email || u.phone === newUser.phone
       )
 
@@ -38,16 +38,45 @@ export const useUserStore = defineStore('user', {
         return { success: false, message: 'Email or phone already registered.' }
       }
      
-      const userWithAvatar = { ...newUser, avatar: '/games/default-avatar.png',
-        memberSince: new Date().getFullYear(),
-       }
-      this.users.push(userWithAvatar)
-      localStorage.setItem('users', JSON.stringify(this.users))
-      // this.currentUser = newUser
-      // localStorage.setItem('currentUser', JSON.stringify(newUser))
+            //  Add signup date
+      newUser.memberSince = new Date().getFullYear()
 
-      return { success: true, message: 'Signup successful!' }
+      //  Default values
+      newUser.fullName = ''
+      newUser.username = ''
+      newUser.bio = ''
+      newUser.avatar = '/games/ProfileAvatar.png'
+      // newUser.dob = ''
+
+      // ✅ Save user
+      this.users.push(newUser)
+      localStorage.setItem('users', JSON.stringify(this.users))
+
+      // Optionally auto login
+      this.currentUser = newUser
+      localStorage.setItem('currentUser', JSON.stringify(newUser))
+
+      return { success: true, message: 'Signup Successfull!' }
     },
+
+
+    
+    updateProfile(updatedUser) {
+      this.currentUser = { ...this.currentUser, ...updatedUser }
+
+      // ✅ Update user list also
+      const index = this.users.findIndex(
+        u => u.email === this.currentUser.email || u.phone === this.currentUser.phone
+      )
+      if (index !== -1) { 
+        this.users[index] = { ...this.users[index], ...updatedUser }
+    }
+      localStorage.setItem('users', JSON.stringify(this.users))
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser))
+    },
+
+
+
 
     // 🔹 Reset Password
   resetPassword(identifier, newPassword) {

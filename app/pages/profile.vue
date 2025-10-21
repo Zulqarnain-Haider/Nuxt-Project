@@ -9,7 +9,7 @@
     >
       <!-- Avatar -->
       <div
-        class="relative w-20 h-20 rounded-full border-4 border-mainText overflow-hidden cursor-pointer group"
+        class="relative w-20 h-20 rounded-full overflow-hidden cursor-pointer group"
         @click="triggerFileInput"
       >
         <img
@@ -35,9 +35,9 @@
       <!-- User Info -->
       <div class="flex flex-col">
         <h2 class="text-2xl font-semibold text-mainText">
-          {{ user?.fullName || 'Guest User' }}
+        {{ user?.fullName || 'Alex Rodriguez' }}
         </h2>
-        <p class="text-onMainText text-sm">{{ user?.username || '@Guest' }}</p>
+        <p class="text-onMainText text-sm">{{ user?.username || '@Alex_Gamer_2024' }}</p>
         <div class="flex items-center gap-2 mt-1 text-sm text-onMainText">
           <i class="fa-solid fa-star text-secondary"></i>
           <span class="text-mainText">Level 47 Gamer</span>
@@ -46,6 +46,20 @@
         </div>
       </div>
     </div>
+
+<!-- ✅ Save Changes Button -->
+<div class="w-[90%] max-w-6xl mt-8 flex justify-end">
+  <Button
+    @click="saveChanges"
+    variant="primary"
+    :width="160"
+    :height="44"
+    extraClass="px-6 py-2 text-sm sm:text-base rounded-lg"
+  >
+    Save Changes
+  </Button>
+</div>
+
 
     <!-- Info Section -->
     <div class="w-[90%] max-w-6xl mt-10">
@@ -70,7 +84,8 @@
             <input
               v-model="user.email"
               type="email"
-              class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-primary"
+              readonly
+              class="w-full bg-bgDark text-mainText px-4 py-3 opacity-80 rounded-lg outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
 
@@ -173,6 +188,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import UiButton from '~/components/ui/Button.vue'
 import PasswordChangeModal from '~/components/modals/PasswordChangeModal.vue'
 import { useUserStore } from '~/stores/userStore'
 
@@ -203,6 +219,13 @@ const handleFileUpload = (e) => {
 }
 
 const showPasswordModal = ref(false)
+
+// ✅ Save changes button
+const saveChanges = () => {
+  userStore.updateProfile(user.value)
+  alert('Profile updated successfully ✅')
+}
+
 </script>
 
 <style scoped>
