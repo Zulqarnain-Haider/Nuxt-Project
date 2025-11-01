@@ -12,14 +12,14 @@
     </button>
 
     <!-- Nuxt UI Button (but styled via Tailwind classes) -->
-    <UButton class="text-white border border-rose-600 hover:bg-rose-500 hover:text-white cursor-pointer">
+    <UiButton class="text-white border border-rose-600 hover:bg-rose-500 hover:text-white cursor-pointer">
       Nuxt UI + Tailwind Mix
-    </UButton>
+    </UiButton>
 
     <!-- Nuxt UI Button using its built-in theme color -->
-    <UButton color="primary">
+    <UiButton color="primary">
       Nuxt UI Primary
-    </UButton>
+    </UiButton>
 
   </div>
 </template>

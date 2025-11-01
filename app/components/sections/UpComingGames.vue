@@ -16,7 +16,7 @@
       <!-- Scrollable Cards -->
       <div
         ref="slider"
-        class="flex gap-4 overflow-x-auto scroll-smooth scrollbar-hide px-6 sm:px-8 lg:px-10"
+        class="flex gap-4 py-2 overflow-x-auto scroll-smooth scrollbar-hide px-6 sm:px-8 lg:px-10"
       >
       <!--  responsive width set for perfect fit -->
         <div
@@ -116,6 +116,20 @@ function scrollRight() {
   slider.value.scrollBy({ left: cardWidth.value * visibleCards(), behavior: 'smooth' })
   updateCurrentPage(1)
 }
+function handleScroll() {
+  if (!slider.value || !cardWidth.value) return
+
+  const scrollLeft = slider.value.scrollLeft
+  const totalCards = games.length
+  const visible = visibleCards()
+  const totalPages = Math.ceil(totalCards / visible)
+
+  // Kitne page scroll ho chuke hain
+  const page = Math.round(scrollLeft / (cardWidth.value * visible))
+
+  currentPage.value = Math.min(page, totalPages - 1)
+}
+
 
 function updateCurrentPage(direction) {
   currentPage.value = Math.min(Math.max(currentPage.value + direction, 0), pages.value - 1)
@@ -125,8 +139,17 @@ onMounted(() => {
   if (slider.value) {
     const firstCard = slider.value.querySelector('div')
     cardWidth.value = firstCard.offsetWidth + parseInt(getComputedStyle(firstCard).marginRight)
+
+     slider.value.addEventListener('scroll', handleScroll)
   }
 })
+
+onUnmounted(() => {
+  if (slider.value) {
+    slider.value.removeEventListener('scroll', handleScroll)
+  }
+})
+
 </script>
 
 <style scoped>

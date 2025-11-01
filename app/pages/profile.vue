@@ -37,7 +37,7 @@
         <h2 class="text-2xl font-semibold text-mainText">
         {{ user?.fullName || 'Alex Rodriguez' }}
         </h2>
-        <p class="text-onMainText text-sm">{{ user?.username || '@Alex_Gamer_2024' }}</p>
+        <!-- <p class="text-onMainText text-sm">{{ user?.username || '@Alex_Gamer_2024' }}</p> -->
         <div class="flex items-center gap-2 mt-1 text-sm text-onMainText">
           <i class="fa-solid fa-star text-secondary"></i>
           <span class="text-mainText">Level 47 Gamer</span>
@@ -49,15 +49,15 @@
 
 <!-- ✅ Save Changes Button -->
 <div class="w-[90%] max-w-6xl mt-8 flex justify-end">
-  <Button
+  <UiButton
     @click="saveChanges"
     variant="primary"
     :width="160"
     :height="44"
-    extraClass="px-6 py-2 text-sm sm:text-base rounded-lg"
+    extraClass="px-3 py-2 text-sm sm:text-base rounded-lg"
   >
     Save Changes
-  </Button>
+  </UiButton>
 </div>
 
 
@@ -101,14 +101,14 @@
         </div>
 
         <div class="flex flex-col gap-6">
-          <div>
+          <!-- <div>
             <label class="block text-sm text-onMainText mb-1">Username</label>
             <input
               v-model="user.username"
               type="text"
               class="w-full bg-bgDark text-mainText px-4 py-3 rounded-lg outline-none focus:ring-2 focus:ring-primary"
             />
-          </div>
+          </div> -->
 
           <div>
             <label class="block text-sm text-onMainText mb-1">Phone</label>
@@ -139,6 +139,11 @@
             :visible="showPasswordModal"
             @close="showPasswordModal = false"
           />
+        
+          <ProfileSaveSuccessModal
+           :visible="showSuccessModal"
+       @close="showSuccessModal = false"
+            />
 
           <div>
             <label class="block text-sm text-onMainText mb-1">Birthday date</label>
@@ -173,14 +178,17 @@
       Please log in to access your profile and manage your account settings.
     </p>
 
-    <!-- ✅ Official styled button -->
-    <NuxtLink
-      to="/auth/login"
-      replace
-      class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition transform hover:scale-[1.03] shadow-md"
-    >
-      Go to Login
-    </NuxtLink>
+<!-- ✅ Official styled button using Button component -->
+<NuxtLink to="/auth/login" replace>
+  <UiButton
+    variant="primary"
+    :width="180"
+    :height="44"
+    extraClass="font-medium text-white text-base transform hover:scale-[1.03]"
+  >
+    Go to Login
+  </UiButton>
+</NuxtLink>
   </div>
 </div>
 
@@ -190,10 +198,13 @@
 import { ref, computed } from 'vue'
 import UiButton from '~/components/ui/Button.vue'
 import PasswordChangeModal from '~/components/modals/PasswordChangeModal.vue'
+import ProfileSaveSuccessModal from '~/components/modals/ProfileSaveSuccessModal.vue'
 import { useUserStore } from '~/stores/userStore'
 
 const userStore = useUserStore()
 const user = computed(() => userStore.currentUser || {})
+
+const showSuccessModal = ref(false)
 
 
 // definePageMeta({
@@ -223,7 +234,7 @@ const showPasswordModal = ref(false)
 // ✅ Save changes button
 const saveChanges = () => {
   userStore.updateProfile(user.value)
-  alert('Profile updated successfully ✅')
+ showSuccessModal.value = true  // ✅ alert hata diya, modal open hoga
 }
 
 </script>

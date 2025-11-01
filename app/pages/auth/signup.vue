@@ -165,10 +165,17 @@
           <p v-if="errors.dob" class="text-error text-xs mt-1 ml-[105px]">{{ errors.dob }}</p>
         </div>
 
-        <!-- Terms -->
+               <!-- Terms -->
         <div class="flex items-center mt-3 space-x-2">
           <input v-model="form.agree" type="checkbox" class="accent-primary" />
           <label class="text-sm">I agree to the <span class="underline">terms & policy</span></label>
+        </div>
+        <p v-if="errors.agree" class="text-error text-xs mt-1">{{ errors.agree }}</p>
+
+               <!-- Terms -->
+        <div class="flex items-center mt-3 space-x-2">
+          <input v-model="form.agree" type="checkbox" class="accent-primary" />
+          <label class="text-sm">Do you agree to recieve sms for <span class="underline">Security & Update Notifications</span></label>
         </div>
         <p v-if="errors.agree" class="text-error text-xs mt-1">{{ errors.agree }}</p>
 

@@ -8,7 +8,7 @@ export default defineNuxtConfig({
       // @ts-ignore
     autoImports: ['defineStore', 'storeToRefs']
   },
-
+  
   // css: ['@/assets/css/tailwind.css'],
   plugins: ['~/plugins/aos.client.ts'],
 

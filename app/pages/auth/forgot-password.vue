@@ -48,7 +48,7 @@
       <!-- Submit Button -->
       <ButtonComponent
         full
-        class="h-9 font-semibold font-poppins mt-3"
+        class="h-9 font-poppins mt-3"
         @click="handleSubmit"
       >
         Submit

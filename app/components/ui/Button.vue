@@ -1,13 +1,13 @@
 <template>
   <button
     :class="[ 
-      'rounded-lg transition-all duration-300 shadow-md md:px-1 py-2 sm:py-1 text-xs',
+      'transition-all duration-300 shadow-md ',
       variant === 'primary'
-        ? 'bg-primary text-mainText hover:opacity-90'
+        ? 'bg-primary text-white hover:opacity-90'
         : 'bg-surface border-2 border-outline text-mainText hover:bg-outline hover:text-white',
-      disabled ? 'bg-gray-400 cursor-not-allowed opacity-70 border-none text-white' : '',
+      disabled ? 'bg-gray-400 cursor-not-allowed opacity-70 border-none text-mainText' : '',
       full ? 'w-full block' : '',
-      extraClass
+      extraClass || 'rounded-lg', 'text-md'
     ]"
     :style="{
       width: full ? '100%' : (width ? width + 'px' : 'auto'),

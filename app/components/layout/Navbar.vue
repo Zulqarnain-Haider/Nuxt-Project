@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="bg-black text-mainText px-4 sm:px-6 md:px-8 lg:px-10 py-4 md:py-5 lg:py-6
+    class="bg-bgNav text-mainText px-4 sm:px-6 md:px-8 lg:px-10 py-4 md:py-5 lg:py-6
     sticky top-0 z-50 flex items-center justify-between flex-wrap"
   >
     <!-- ========== LEFT SECTION ========== -->
@@ -41,8 +41,10 @@
       </ul>
 
       <!--  Search (desktop only) -->
-      <button class="hidden xl:flex text-lg">
-        <img src="/games/NavSearch.icon.svg" alt="search" class="w-5" />
+      <button class="hidden xl:flex text-lg"> 
+        <img src="/games/NavSearch.icon.svg" alt="search" class="w-5"
+          @click="goToSearch"
+ />
       </button>
     </div>
 
@@ -52,7 +54,9 @@
       <div class="flex xl:hidden items-center gap-2 sm:gap-3 md:gap-4">
         <!-- Search -->
         <button class="text-xl hover:text-primary">
-          <img src="/games/NavSearch.icon.svg" alt="search" />
+          <img src="/games/NavSearch.icon.svg" alt="search" 
+            @click="goToSearch"
+/>
         </button>
 
         <!-- 🔹 Sign In or Avatar -->
@@ -173,7 +177,7 @@
               Logout
               <i class="fa-solid fa-arrow-right-from-bracket ml-2"></i>
             </button>
-            <NuxtLink to="/auth/profile">
+            <NuxtLink to="/profile">
               <button
               class="px-3 py-2 text-sm text-mainText flex items-center font-semibold hover:text-primary w-full text-left"
               @click="router.push('/profile')"
@@ -203,6 +207,7 @@
             <li v-for="(link, i) in links" :key="i">
               <NuxtLink
                 :to="link.path"
+                  @click="handleSidebarLinkClick"
                 :class="isActive(link.path) ? 'text-primary' : 'hover:text-primary'"
                 class="block py-2 transition-colors"
               >
@@ -246,18 +251,31 @@ const logoutUser = () => {
 
 const links = [
   { label: "Home", path: "/" },
-  { label: "PC Games", path: "/pc" },
-  { label: "Xbox", path: "/xbox" },
-  { label: "PlayStation", path: "/playstation" },
-  { label: "Nintendo", path: "/nintendo" },
-  { label: "Gift Cards", path: "/gifts" },
-  { label: "Deals", path: "/deals" },
-  { label: "Pre-orders", path: "/preorders" },
+  { label: "PC Games", path: "/category/pc" },
+  { label: "Xbox", path: "/category/xbox" },
+  { label: "PlayStation", path: "/category/playstation" },
+  { label: "Nintendo", path: "/category/nintendo" },
+  { label: "Gift Cards", path: "/category/gifts" },
+  { label: "Deals", path: "/category/deals" },
+  { label: "Pre-orders", path: "/category/preorders" },
   { label: "Blog", path: "/blog" },
 ]
 
 const isActive = (p) => route.path === p
 watch(isOpen, (v) => (document.body.style.overflow = v ? "hidden" : "auto"))
+
+const handleSidebarLinkClick = () => {
+  setTimeout(() => {
+    isOpen.value = false
+  }, 100) // 100ms delay
+}
+
+function goToSearch() {
+  router.push('/search')
+}
+
+
+
 </script>
 
 <style scoped>

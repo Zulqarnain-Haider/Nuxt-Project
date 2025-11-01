@@ -20,7 +20,8 @@
         <!-- ✅ SUCCESS CONTENT -->
         <template v-if="success">
           <div class="flex flex-col items-center justify-center space-y-6 scale-[0.7]">
-            <img
+            <NuxtImg
+            densities="x1" quality="80" loading="lazy"
               src="/games/ResetPasswordSuccess.svg"
               alt="Success"
               class="w-16 h-16 sm:w-20 sm:h-20"
@@ -41,7 +42,8 @@
         <template v-else>
           <div class="flex flex-col items-center w-full max-w-xs 
           sm:max-w-sm  space-y-4 sm:space-y-5 scale-[0.46] sm:scale-[0.57]">
-            <img
+            <NuxtImg 
+            densities="x1" quality="80" loading="lazy"
               src="/games/ForgotPasswordLock.svg"
               alt="Lock"
               class="w-16 h-16 sm:w-20 sm:h-20 self-start ml-2 sm:ml-0"
@@ -95,7 +97,8 @@
                   Enter New Password
                 </label>
                 <div class="relative">
-                  <img
+                  <NuxtImg 
+                  densities="x1" quality="80" loading="lazy"
                     src="/games/InputsLockicon.svg"
                     class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5"
                   />
@@ -124,7 +127,8 @@
                   Confirm New Password
                 </label>
                 <div class="relative">
-                  <img
+                  <NuxtImg
+                  densities="x1" quality="80" loading="lazy"
                     src="/games/InputsLockicon.svg"
                     class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5"
                   />

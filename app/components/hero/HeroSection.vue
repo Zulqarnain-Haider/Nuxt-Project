@@ -32,7 +32,7 @@
             variant="primary"
             :width="0"
             :height="48"
-            extraClass="px-6 md:px-7 py-3 text-base font-poppins
+            extraClass="px-6 md:px-7 py-3 text-xs font-poppins
             rounded-3xl shadow-lg shadow-primary/40 hover:shadow-primary/60 rounded-2xl sm:rounded-2xl transition-all duration-300"
           >
             Browse Deals
@@ -41,7 +41,7 @@
             variant="outline"
             :width="0"
             :height="48"
-            extraClass="px-6 md:px-7 py-3 text-base font-poppins border-[2.5px] sm:border-[3px] rounded-2xl sm:rounded-2xl"
+            extraClass="px-6 md:px-7 py-3 text-xs font-poppins border-[2.5px] sm:border-[3px] rounded-2xl sm:rounded-2xl"
           >
             View Games
           </UiButton>

@@ -65,7 +65,7 @@
        <NuxtLink to="">
       <ButtonComponent
         full
-        class="h-9 font-semibold font-poppins mt-3"
+        class="h-9font-poppins mt-3"
         @click="verifyOtp"
       >
         Verify

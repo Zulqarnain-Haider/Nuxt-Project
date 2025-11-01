@@ -12,11 +12,11 @@
     </div>
 
     <!-- Slider Wrapper -->
-    <div class="relative mt-8">
+    <div class="relative mt-8 overflow-visible z-[1]">
       <!-- Scrollable Cards -->
       <div
         ref="slider"
-        class="flex gap-4 overflow-x-auto scroll-smooth scrollbar-hide px-6 sm:px-8 lg:px-10"
+        class="flex gap-4 py-2 overflow-x-auto scroll-smooth scrollbar-hide px-6 sm:px-8 lg:px-10"
       >
       <!--  responsive width set for perfect fit -->
         <div
@@ -32,7 +32,7 @@
             :price="g.price"
             :oldPrice="g.oldPrice"
             :rating="g.rating"
-          />
+            />
         </div>
       </div>
 
@@ -76,24 +76,24 @@ import GameCard from '~/components/cards/GameCard.vue'
 
 const games = [
   { title: 'Fortnite', image: '/games/black-myth-slider.png', discount: 15, price: 51, oldPrice: 60, rating: 81 },
-  { title: 'Minecraft', image: '/games/minecraft.jpg', discount: 15, price: 45, oldPrice: 55, rating: 88 },
+  { title: 'Minecraft', image: '/games/minecraft.jpg', discount: 15, price: 45, oldPrice: 55, rating: 48 },
   { title: 'Counter-Str..', image: '/games/Frame.Slider.jpg', discount: 20, price: 40, oldPrice: 50, rating: 79 },
   { title: 'Spider-Man 2', image: '/games/spiderman2.jpg', discount: 25, price: 35, oldPrice: 48, rating: 90 },
-  { title: 'The Witcher 3', image: '/games/witcher3.jpg', discount: 18, price: 49, oldPrice: 60, rating: 93 },
+  { title: 'The Witcher 3', image: '/games/witcher3.jpg', discount: 18, price: 49, oldPrice: 60, rating: 33 },
   { title: 'Fortnite', image: '/games/black-myth-slider.png', discount: 15, price: 51, oldPrice: 60, rating: 81 },
   { title: 'Minecraft', image: '/games/minecraft.jpg', discount: 15, price: 45, oldPrice: 55, rating: 88 },
   { title: 'Counter-Str..', image: '/games/Frame.Slider.jpg', discount: 20, price: 40, oldPrice: 50, rating: 79 },
-  { title: 'Spider-Man 2', image: '/games/spiderman2.jpg', discount: 25, price: 35, oldPrice: 48, rating: 90 },
+  { title: 'Spider-Man 2', image: '/games/spiderman2.jpg', discount: 25, price: 35, oldPrice: 48, rating: 53 },
   { title: 'The Witcher 3', image: '/games/witcher3.jpg', discount: 18, price: 49, oldPrice: 60, rating: 93 },
 ]
 
-// ✅ Refs
+// Refs
 const slider = ref(null)
 const cardWidth = ref(0)
 const currentPage = ref(0)
 const width = ref(1024) // default safe value
 
-// ✅ Function to safely get innerWidth
+// Function to safely get innerWidth
 const getWindowWidth = () => {
   if (typeof window !== 'undefined' && window.innerWidth) {
     return window.innerWidth
@@ -101,12 +101,12 @@ const getWindowWidth = () => {
   return 1024 // fallback
 }
 
-// ✅ Update width on resize
+// width on resize
 const updateWidth = () => {
   width.value = getWindowWidth()
 }
 
-// ✅ Cards visible logic
+// Cards visible logic
 const getVisibleCards = () => {
   const w = width.value
   if (w >= 1536) return 6
@@ -116,7 +116,7 @@ const getVisibleCards = () => {
   return 2
 }
 
-// ✅ Computed pagination
+// Computed pagination
 const pages = computed(() => Math.ceil(games.length / getVisibleCards()))
 const currentDot = computed(() => {
   if (pages.value <= 6) return currentPage.value
@@ -124,7 +124,7 @@ const currentDot = computed(() => {
   return Math.min(Math.round(currentPage.value / step), 5)
 })
 
-// ✅ Scroll functions
+// Scroll functions
 const updateCurrentPage = (dir) => {
   currentPage.value = Math.min(
     Math.max(currentPage.value + dir, 0),
@@ -150,7 +150,19 @@ const scrollRight = () => {
   updateCurrentPage(1)
 }
 
-// ✅ Mounted
+// Auto update dots when user scrolls manually
+const handleScroll = () => {
+  if (!slider.value || cardWidth.value === 0) return
+  const scrollLeft = slider.value.scrollLeft
+  const cardsVisible = getVisibleCards()
+
+  // Calculate which "page" user is roughly on
+  const newPage = Math.round(scrollLeft / (cardWidth.value * cardsVisible))
+  currentPage.value = Math.min(newPage, pages.value - 1)
+}
+
+
+// Mounted
 onMounted(async () => {
   updateWidth()
   window.addEventListener('resize', updateWidth)
@@ -162,21 +174,18 @@ onMounted(async () => {
       const style = getComputedStyle(firstCard)
       cardWidth.value = firstCard.offsetWidth + parseInt(style.marginRight)
     }
+      slider.value.addEventListener('scroll', handleScroll)
   }
 })
 
-// ✅ Cleanup
+// Cleanup
 onBeforeUnmount(() => {
   if (typeof window !== 'undefined') {
     window.removeEventListener('resize', updateWidth)
   }
+   slider.value?.removeEventListener('scroll', handleScroll)
 })
 </script>
-
-
-
-
-
 
 <style scoped>
 .scrollbar-hide::-webkit-scrollbar {

@@ -1,7 +1,8 @@
 <template>
-  <div
-    class="relative bg-surface border border-outline rounded-xl p-3 sm:p-4 md:p-5 shadow-md 
-    hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full"
+  <NuxtLink
+    :to="`/products/${id}`"
+    class="relative border border-outline rounded-xl p-3 sm:p-4 md:p-5 shadow-md 
+    hover:shadow-lg hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between h-full"
   >
     <!-- Discount Badge -->
     <!-- <span
@@ -46,7 +47,7 @@
 
     <!-- Buttons -->
 <!-- Calendar / Pre-Order Info -->
-<div class="flex justify-between items-center mt-3 text-white text-xs sm:text-[11px] lg:text-[13px] xl:text-[14px]">
+<div class="flex justify-between items-center mt-3 text-white text-xs sm:text-[11px] lg:text-[13px] xl:text-[13px] 2xl:text-[14px]">
   <!-- Left: Date -->
   <div class="flex items-center justify-center text-onMainText gap-2 md:gap-1 whitespace-nowrap"> 
     <img src="/games/calendar.svg.svg" alt="Calendar" class="w-4 h-4 sm:w-3 sm:h-3 lg:h-4 lg:w-4 opacity-80" />
@@ -54,19 +55,18 @@
   </div>
 
   <!-- Right: Button / CTA -->
-  <div class="group flex items-center gap-1 cursor-pointer whitespace-nowrap transition-transform duration-300 hover:scale-105">
+  <div class="group flex items-center justify-center gap-1 cursor-pointer whitespace-nowrap transition-transform duration-300 hover:scale-105">
     <span class="font-vazirmatn">{{ buttonText }}</span>
     <img src="/games/TournamentCard.arrow.svg" alt="→" class="w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
   </div>
 </div>
+  </NuxtLink>
 
-
-  </div>
 </template>
 
 <script setup>
-import UiButton from '~/components/ui/Button.vue'
 defineProps({
+    id: Number,
   title: String,
   image: String,
   price: Number,

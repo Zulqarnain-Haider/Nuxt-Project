@@ -30,7 +30,7 @@ const showFooter = computed(() => !route.path.startsWith('/auth'))
 
 <style scoped>
 .bg-page-gradient {
-  background: linear-gradient(180deg, #111 0%, #222 100%);
+  background: linear-gradient(180deg, #17191D 0%, #2C3137 100%);
 }
 
 .slide-fade-enter-active,

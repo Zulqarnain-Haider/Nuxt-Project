@@ -113,7 +113,7 @@
       :width="0"
       :height="42"
       extraClass="px-5 sm:px-7 md:px-8 py-2 mt-2 text-[0.8rem] sm:text-[0.9rem] md:text-[1rem] lg:text-[1.1rem]
-                 font-poppins rounded-3xl shadow-lg shadow-primary/40 hover:shadow-primary/60 
+                 font-poppins rounded-xl shadow-lg shadow-primary/40 hover:shadow-primary/60 
                  transition-all duration-300"
     >
       Join Now

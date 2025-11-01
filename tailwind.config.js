@@ -11,6 +11,7 @@ module.exports =  {
   theme: {
     extend: {
             colors: {
+        bgNav: "#2D3238",
         bgLight: "#2C3137",       //  main top left background color
         bgDark: "#17191D", 
         onGoNext: "#FF5733",       //  main bottom right background color

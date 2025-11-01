@@ -5,6 +5,9 @@
     <h1 class="text-3xl font-bold mb-6">Welcome to E-Game Store</h1>
     <NuxtLink to="/auth/signup" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-onGoNext">Go to Signup</NuxtLink>
     <NuxtLink to="/profile" class="bg-primary mt-4 text-white px-6 py-3 rounded-lg hover:bg-onGoNext">Go to Profile</NuxtLink>
+    <NuxtLink to="/orders" class="bg- bg-primary text-mainText px-6 py-3 rounded-lg mt-4">My Orders</NuxtLink>
+    <NuxtLink to="/cart" class="bg- bg-primary text-mainText px-6 py-3 rounded-lg mt-4">Go to Cart</NuxtLink>
+    <NuxtLink to="/checkout2" class="bg- bg-primary text-mainText px-6 py-3 rounded-lg mt-4">Go to Confirmation </NuxtLink>
   </div>
 
      <br>
