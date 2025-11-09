@@ -2,11 +2,17 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-icon', '@nuxt/image'], 
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-icon', '@nuxt/image', '@nuxt/icon'], 
 
     pinia: {
       // @ts-ignore
     autoImports: ['defineStore', 'storeToRefs']
+  },
+
+   runtimeConfig: {
+    public: {
+      apiBase: process.env.NUXT_PUBLIC_API_BASE
+    }
   },
   
   // css: ['@/assets/css/tailwind.css'],
@@ -17,7 +23,7 @@ export default defineNuxtConfig({
       title: 'E-Game-Store',  
       link: [
 
-        { rel: 'icon', type: 'image/svg+xml', href: '/EE-favicon.png' }, 
+        { rel: 'icon', type: 'image/svg+xml', href: '/EGAME-favicon.png' }, 
 
           // Font Awesome (already there)
         {
@@ -27,7 +33,7 @@ export default defineNuxtConfig({
          // Add your Google Fonts here
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Vazirmatn:wght@400;700&display=swap=Roboto:wght@400;500;700&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@400;600&family=Vazirmatn:wght@400;700&display=swap=Roboto:wght@400;500;700&display=swap",
         },
 
       ],

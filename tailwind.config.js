@@ -24,17 +24,23 @@ module.exports =  {
         onFooter: "#888888",      // footer text
         error: "#D91B1B",         // error messages
         onError: "#FFFFFF",       // text on error
-        inputsIn: "#979797"       // text in inputs
+        inputsIn: "#979797",       // text in inputs
+
+        //  New chat gradient colors
+        chatStart: "#E53644",  // right side (darker red)
+        chatEnd: "#FF6916"     // left side (orange)
 
       },
       backgroundImage: {
        "page-gradient": "linear-gradient(to bottom right, #2C3137, #17191D)",
+       "chat-gradient": "linear-gradient(to left, #E53644, #FF6916)", // new gradient
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
         vazirmatn: ["Vazirmatn", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
         inter: ["Inter", "sans-serif"], // Figma font
+        grotesk: ['"Space Grotesk"', 'sans-serif'],
       },
       keyframes: {
     shake: {

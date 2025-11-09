@@ -7,7 +7,7 @@
 
       <button
         @click="clearFilters"
-        class="text-md px-5 py-2 rounded-full outline outline-onOutline text-mainText hover:bg-outline hover:text-white hover:outline-none"
+        class="text-md px-5 py-2 rounded-full border border-onOutline text-mainText hover:bg-outline hover:text-white hover:border-transparent"
       >
         Clear All
       </button>
@@ -15,10 +15,10 @@
 
     <!-- ===== Sidebar Body ===== -->
     <aside
-      class="w-68 bg-bgDark border border-outline rounded-lg p-6 flex-shrink-0 h-[calc(100vh-190px)] overflow-y-auto shadow-md space-y-8 scrollbar-hide"
+      class="w-68 bg-bgDark border border-outline rounded-lg p-6 h-[calc(100vh-160px)] overflow-y-auto shadow-md space-y-8 scrollbar-hide"
     >
 
-      <!-- 🎮 Genre Section -->
+      <!--Genre Section -->
       <div>
         <div class="flex justify-between items-center mb-3 cursor-pointer select-none"
          @click="toggleSection('genre')"
@@ -88,7 +88,7 @@
            <!-- 🎚 Animated Price Section -->
         <transition name="slide-fade" mode="out-in">
           <div v-if="openSections.price">
-        <!-- 🎚 Range Slider -->
+        <!--Range Slider -->
         <input
           type="range"
           :min="0"

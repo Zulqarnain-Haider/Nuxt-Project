@@ -129,7 +129,7 @@
               class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
             />
 
-            <!-- ✅ Status Icon -->
+            <!--Status Icon -->
             <div
               class="absolute bottom-0 right-0"
               :class="{
@@ -168,7 +168,7 @@
           <p class="text-lg font-semibold">${{ item.price }}</p>
         </div>
       </div>
-       <!-- 🔸 Right Column: Order Progress -->
+       <!-- Right Column: Order Progress -->
         <div class="hidden lg:block">
           <OrderProgress v-if="order" :order="order" />
         </div>
@@ -176,7 +176,7 @@
        
     </div>
 
-    <!-- 🔹 Key Modal -->
+    <!--Key Modal -->
     <OrderKeyModal
       :visible="showModal"
       @close="showModal = false"

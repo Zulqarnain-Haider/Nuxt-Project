@@ -70,8 +70,11 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import GameDetails from '../cards/GameDetails.vue'
+
+// SSR-safe flag
+const isClient = ref(false)
 
 const games = [
   { title: 'FC25', image: '/games/UpcomingGames1.png', price: 51, oldPrice: 60, rating: 81, releaseDate: '27/10/2025', buttonText: 'Pre-Order'  },
@@ -92,9 +95,11 @@ const cardWidth = ref(0)
 const currentPage = ref(0)
 
 function visibleCards() {
-  if (window.innerWidth >= 1280) return 5
-  if (window.innerWidth >= 1024) return 4
-  if (window.innerWidth >= 820) return 3
+    if (!isClient.value) return 5 // default (SSR render)
+    const w = window.innerWidth
+ if (w >= 1280) return 5
+  if (w >= 1024) return 4
+  if (w >= 820) return 3
   return 2
 }
 
@@ -136,18 +141,21 @@ function updateCurrentPage(direction) {
 }
 
 onMounted(() => {
+    isClient.value = true
+
   if (slider.value) {
     const firstCard = slider.value.querySelector('div')
     cardWidth.value = firstCard.offsetWidth + parseInt(getComputedStyle(firstCard).marginRight)
-
      slider.value.addEventListener('scroll', handleScroll)
   }
+   // Update on resize
+  window.addEventListener('resize', handleScroll)
 })
 
 onUnmounted(() => {
-  if (slider.value) {
-    slider.value.removeEventListener('scroll', handleScroll)
-  }
+  if (slider.value) slider.value.removeEventListener('scroll', handleScroll)
+    window.removeEventListener('resize', handleScroll)
+
 })
 
 </script>

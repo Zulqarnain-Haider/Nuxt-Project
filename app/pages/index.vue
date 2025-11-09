@@ -1,13 +1,16 @@
 <template>
   <div class="min-h-screen text-white">
     <br>
-    <div class="flex flex-col items-center justify-center min-h-screen">
+    <div class="flex space-x-3 items-center justify-center min-h-screen">
     <h1 class="text-3xl font-bold mb-6">Welcome to E-Game Store</h1>
     <NuxtLink to="/auth/signup" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-onGoNext">Go to Signup</NuxtLink>
-    <NuxtLink to="/profile" class="bg-primary mt-4 text-white px-6 py-3 rounded-lg hover:bg-onGoNext">Go to Profile</NuxtLink>
     <NuxtLink to="/orders" class="bg- bg-primary text-mainText px-6 py-3 rounded-lg mt-4">My Orders</NuxtLink>
     <NuxtLink to="/cart" class="bg- bg-primary text-mainText px-6 py-3 rounded-lg mt-4">Go to Cart</NuxtLink>
     <NuxtLink to="/checkout2" class="bg- bg-primary text-mainText px-6 py-3 rounded-lg mt-4">Go to Confirmation </NuxtLink>
+    <NuxtLink to="/wallet" class="bg- bg-primary text-mainText px-6 py-3 rounded-lg mt-4">Wallet Points</NuxtLink>
+    <NuxtLink to="/faq" class="bg- bg-primary text-mainText px-6 py-3 rounded-lg mt-4">Faq</NuxtLink>
+    <NuxtLink to="/faq" class="bg- bg-primary text-mainText px-6 py-3 rounded-lg mt-4">Faq</NuxtLink>
+    <NuxtLink to="/contact/new-ticket" class="bg- bg-primary text-mainText px-6 py-3 rounded-lg mt-4">Contact Us</NuxtLink>
   </div>
 
      <br>

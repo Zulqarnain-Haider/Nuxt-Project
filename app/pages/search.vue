@@ -30,7 +30,7 @@
       <!-- 🕹️ Results Grid -->
       <div
         v-if="!loading && filteredProducts.length"
-        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
       >
         <GameCard
           v-for="(product, i) in filteredProducts"

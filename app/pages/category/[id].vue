@@ -4,7 +4,7 @@
   >
     <div class="w-full max-w-7xl flex flex-col md:flex-row gap-8">
 
-      <!-- 🧭 Sidebar (Filters) -->
+      <!--Sidebar (Filters) -->
       <aside
         class="w-full md:w-64 lg:w-72 flex-shrink-0 p-4 md:p-2 border rounded-lg border-primary md:border-none"
       >
@@ -16,16 +16,16 @@
         />
       </aside>
 
-      <!-- 🛒 Products Section -->
+      <!--Products Section -->
       <section class="flex-1 flex flex-col w-full">
-        <!-- 🧩 Sorting Bar -->
+        <!--Sorting Bar -->
         <div
           class="flex flex-wrap justify-between items-center mb-6 gap-4"
         >
           <span class="flex gap-3 items-center text-sm sm:text-base">
             <NuxtLink class="text-mainText text-lg hover:text-primary" to="/">Home</NuxtLink>
-            <i class="fa-solid fa-chevron-right text-sm text-mainText"></i>
-            <h2 class="font-medium capitalize">{{ categoryTitle }}</h2>
+            <Icon name="mdi:chevron-right" size="32" class="text-mainText" />
+            <h2 class="font-medium capitalize text-lg">{{ categoryTitle }}</h2>
           </span>
 
           <div class="flex items-center gap-2 text-sm sm:text-base">
@@ -42,7 +42,7 @@
           </div>
         </div>
 
-        <!-- 🕹️ Product Grid -->
+        <!--Product Grid -->
         <div
           v-if="loading"
           class="text-center py-20 text-onMainText"
@@ -54,7 +54,7 @@
           v-else
           class="grid  grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6"
         >
-          <!-- 🔹 Pre-orders -->
+          <!--Pre-orders -->
           <PreOrderCard
             v-if="category === 'preorders'"
             v-for="p in paginatedProducts"
@@ -69,7 +69,7 @@
             :buttonText="p.buttonText || 'Pre-Order Now'"
           />
 
-          <!-- 🔸 Normal Game Cards -->
+          <!--Normal Game Cards -->
           <GameCard
             v-else
             v-for="(p, index) in paginatedProducts"
@@ -84,7 +84,7 @@
          class="max-w-10%"/>
         </div>
 
-        <!-- 📄 Pagination -->
+        <!--Pagination -->
         <Pagination
           v-if="total > perPage"
           :total="total"
@@ -99,7 +99,7 @@
 </template>
 
 <script setup>
-// ✅ Components
+// Components
 import GameCard from '~/components/cards/GameCard.vue'
 import PreOrderCard from '~/components/cards/GameDetails.vue'
 import FiltersSidebar from '~/components/FiltersSidebar.vue'
@@ -124,7 +124,10 @@ const categoryTitle = computed(() => {
     nintendo: 'Nintendo',
     gifts: 'Gift Cards',
     deals: 'Deals',
-    preorders: 'Pre-orders'
+    preorders: 'Pre-orders',
+    trending: 'Trending Games',
+    upcoming: 'Upcoming Games',
+    bestseller: 'Bestsellers',
   }
   return map[category.value] || 'Games'
 })
@@ -133,7 +136,7 @@ const categoryTitle = computed(() => {
 const loading = ref(false)
 const products = ref([])
 
-// 🎮 Genre list with counts (official structure)
+// Genre list with counts (official structure)
 const genresList = ref([
   { name: 'Action', count: 15 },
   { name: 'Adventure', count: 23 },
@@ -172,7 +175,7 @@ const paginatedProducts = computed(() => {
 
 /* -------------------- METHODS -------------------- */
 
-// 🧠 Fetch products based on filters
+// Fetch products based on filters
 async function fetchProducts() {
   loading.value = true
   const res = await $fetch('/api/products', {
@@ -187,13 +190,13 @@ async function fetchProducts() {
   loading.value = false
 }
 
-// 🔄 When user updates filters (from sidebar)
+// When user updates filters (from sidebar)
 function onFilterUpdate(val) {
   filters.value = { ...filters.value, ...val }
   fetchProducts()
 }
 
-// 🧹 Reset all filters
+// Reset all filters
 function clearFilters() {
   filters.value = { genres: [], minPrice: 0, maxPrice: 200, page: 1 }
   fetchProducts()

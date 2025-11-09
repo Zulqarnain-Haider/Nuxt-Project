@@ -4,7 +4,7 @@
 
     <div
       v-if="order.status !== 'Delivered'"
-      class="bg-bgLight/20 rounded-xl p-6 w-full md:w-[280px] h-fit border border-bgLight"
+      class="bg-bgLight/20 rounded-xl p-6 w-full font-inter md:w-[280px] h-fit border border-bgLight"
     >
       <h3 class="text-md text-mainText mb-6">Order Timeline</h3>
 
@@ -59,7 +59,7 @@
               <AppButton
                 v-if="index + 1 === currentStep"
                 variant="primary"
-                class="text-mainText px-3 py-[2px] ml-3 text-xs font-medium"
+                class="text-mainText px-3 py-[2px] rounded-lg ml-3 text-xs font-medium"
               >
                 Current
               </AppButton>

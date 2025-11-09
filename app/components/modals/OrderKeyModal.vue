@@ -19,7 +19,7 @@
           format="webp"
           densities="x1"
           quality="80"
-          loading="lazy"
+          preload
           class="absolute inset-0 w-full h-full object-contain object-center z-0"
         />
 

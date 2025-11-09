@@ -108,11 +108,60 @@
         />
       </div>
 
-      <!-- 💻 Desktop -->
+      <!--Desktop -->
       <div class="hidden xl:flex items-center gap-4 2xl:gap-6">
-        <button class="flex items-center text-[13px] hover:text-primary font-roboto">
-          <i class="fa-solid fa-location-dot text-[18px] mr-1"></i>Spain
-        </button>
+        <div class="relative group">
+  <button
+    class="flex items-center text-[13px] hover:text-primary font-roboto gap-1"
+  >
+    <i class="fa-solid fa-location-dot text-[18px]"></i>
+
+    <!-- Show flag + name -->
+    <NuxtImg 
+    densities="x1" quality="80" format="webp" loading="lazy"
+      v-if="selectedCountry?.flag"
+      :src="selectedCountry.flag"
+      alt="flag"
+      class="w-5 h-5 rounded-sm ml-1"
+    />
+    <span>{{ selectedCountry?.name || 'Select Country' }}</span>
+
+    <NuxtImg 
+    densities="x1" quality="80" loading="lazy"
+      src="/games/arrowsHeader.icon.svg"
+      alt="arrow"
+      class="w-3 ml-1 transition-transform duration-200 group-hover:rotate-180"
+    />
+  </button>
+
+  <!-- Dropdown -->
+  <ul
+    class="absolute right-0 mt-2 hidden group-hover:block bg-surface border border-outline 
+    rounded shadow-lg text-sm max-h-60 overflow-y-auto z-50 min-w-[170px]"
+  >
+    <li
+      v-if="isLoadingCountries"
+      class="px-3 py-2 text-center text-onFooter"
+    >
+      Loading...
+    </li>
+
+    <li
+      v-for="country in countries"
+      :key="country.id"
+      class="flex items-center gap-2 px-3 py-2 hover:bg-outline hover:text-white cursor-pointer"
+      @click="selectCountry(country)"
+    >
+      <NuxtImg
+    densities="x1" quality="80" format="webp" loading="lazy"
+        :src="country.flag"
+        alt="flag"
+        class="w-5 h-5 rounded-sm"
+      />
+      {{ country.name }}
+    </li>
+    </ul>
+   </div>
 
         <div class="relative group">
           <button class="flex items-center gap-1 text-[12px] hover:text-primary font-roboto">
@@ -145,7 +194,7 @@
           </ul>
         </div>
 
-        <!-- 🔹 Sign In / Avatar (Desktop) -->
+        <!-- Sign In / Avatar (Desktop) -->
         <NuxtLink
           v-if="!isLoggedIn"
           to="/auth/login"
@@ -222,7 +271,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '~/stores/userStore'
 
@@ -230,6 +279,11 @@ const route = useRoute()
 const router = useRouter()
 const isOpen = ref(false)
 const userStore = useUserStore()
+
+
+const countries = ref([])
+const isLoadingCountries = ref(false)
+const selectedCountry = ref(null)
 
 const isLoggedIn = computed(() => !!userStore.currentUser)
 
@@ -242,6 +296,45 @@ watch(
   },
   { deep: true }
 )
+
+const config = useRuntimeConfig()
+
+onMounted(async () => {
+  try {
+     const apiBase = config.public.apiBase
+     const url = `${apiBase}/countries?category_id=1`
+    if (!apiBase) {
+      console.error('API Base URL is undefined. Check your .env file.')
+      return
+    }
+
+    isLoadingCountries.value = true
+    const data = await $fetch(url)
+
+    if (data.status && data.data) {
+      countries.value = data.data
+      console.log('Countries loaded:', countries.value)
+    } else {
+      console.error(' API failed or empty:', data)
+    }
+  } catch (err) {
+    console.error('Error fetching countries:', err)
+  } finally {
+    isLoadingCountries.value = false
+  }
+})
+
+onMounted(() => {
+  const saved = localStorage.getItem('selectedCountry')
+  if (saved) selectedCountry.value = JSON.parse(saved)
+})
+
+
+function selectCountry(country) {
+  selectedCountry.value = country
+  localStorage.setItem('selectedCountry', JSON.stringify(country))
+}
+
 
 
 const logoutUser = () => {
